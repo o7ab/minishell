@@ -66,6 +66,8 @@ int	check_valid(t_info *info)
 
 int	parse_line(t_info *info)
 {
+	t_node list;
+	
 	info->split = ft_split(info->line, ' ');
 	if (!check_valid(info))
 	{

@@ -34,4 +34,11 @@ typedef struct s_info
 	char **split;
 }	t_info;
 
+typedef struct s_node
+{
+	int		type;
+	char	*str;
+	struct s_node *next;
+}	t_node;
+
 #endif
