@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/10/03 10:08:30 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/10/31 15:02:30 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define PURPLE "\e[1;95m"
 # define WORD 0
 # define PIPE 1
-# define SPACE 2
+# define SPC 2
 # define QUOTES 3
 # define DQUOTES 4
 
@@ -40,5 +40,13 @@ typedef struct s_node
 	char	*str;
 	struct s_node *next;
 }	t_node;
+
+typedef struct s_cmd
+{
+	char	*cmd;
+	char	*arg;
+	char	*outfile;
+	char	*infile;
+} t_cmd;
 
 #endif

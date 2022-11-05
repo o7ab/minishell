@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/10/08 20:45:52 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:17:00 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	lst_add(t_node **list, int t, char *str)
 
 void	parse_space(t_node *list)
 {
-	lst_add(&list, SPACE, " ");
+	lst_add(&list, SPC, " ");
 }
 
 void parse_pipe(t_node *list)
@@ -104,7 +104,7 @@ void	parse_quotes(t_node *list, t_info *info, int index)
 		if (info->line[index] + 1 != 39)
 		{
 			str = get_str(info, index + 1);
-			lst_add(&list, QUOTES, info->line[index] + 1);
+			lst_add(&list, QUOTES, str);
 		}
 			return;
 	}
@@ -116,35 +116,43 @@ void	parse_quotes(t_node *list, t_info *info, int index)
 		}
 	}
 }
-int	parse_line(t_info *info, t_node *list)
+// int	parse_line(t_info *info, t_node *list)
+// {
+// 	int		i;	
+// 	i = 0;
+// 	while (info->line[i])
+// 	{
+// 		if (info->line[i] == ' ')
+// 			parse_space(list);
+// 		else if (info->line[i] == '|')
+// 			parse_pipe(list);
+// 		else if (info->line[i] == 34 || info->line[i] == 39)
+// 			parse_quotes(list, info, i);
+// 		else if (ft_isprint(info->line[i]))
+// 			parse_word(info);
+// 		i++;
+// 	}
+// 	return (1);
+// }
+
+int	parse_line(t_info *info, t_cmd *input)
 {
-	int		i;
-	
+	int i;
+
 	i = 0;
-	while (info->line[i])
-	{
-		if (info->line[i] == ' ')
-			parse_space(list);
-		else if (info->line[i] == '|')
-			parse_pipe(list);
-		else if (info->line[i] == 34 || info->line[i] == 39)
-			parse_quotes(list, info, i);
-		else if (ft_isprint(info->line[i]))
-			parse_word(info);
-		i++;
-	}
-	return (1);
+	input->cmd
 }
 
 int main(void)
 {
 	// char buf[1024];
-	t_info info;
-	t_node list;
+	t_info	info;
+	t_cmd	input;
+	// t_node list;
 	while (1)
 	{
 		printf("%s", PURPLE);
 		info.line = readline("minishell> \033[0m");
-		parse_line(&info, &list);
+		parse_line(&info, &cmd);
 	}
 }
