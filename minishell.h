@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/10/31 15:02:30 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/11/09 07:13:42 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@
 
 typedef struct s_info
 {
-	char *line;
-	char **split;
+	char	*line;
+	char	**split;
+	int		n_cmd;
 }	t_info;
 
 typedef struct s_node
@@ -47,6 +48,7 @@ typedef struct s_cmd
 	char	*arg;
 	char	*outfile;
 	char	*infile;
+	t_cmd	*next;
 } t_cmd;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/11/05 18:17:00 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/11/09 07:26:48 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,27 +95,27 @@ char	*get_str(t_info *info, int index)
 	
 }
 
-void	parse_quotes(t_node *list, t_info *info, int index)
-{
-	char *str;
+// void	parse_quotes(t_node *list, t_info *info, int index)
+// {
+// 	char *str;
 
-	if (info->line[index] == 39)
-	{
-		if (info->line[index] + 1 != 39)
-		{
-			str = get_str(info, index + 1);
-			lst_add(&list, QUOTES, str);
-		}
-			return;
-	}
-	else if (info->line[index] == '"')
-	{
-		if (info->line[index] + 1 != '"')
-		{
-			info->line[index];
-		}
-	}
-}
+// 	if (info->line[index] == 39)
+// 	{
+// 		if (info->line[index] + 1 != 39)
+// 		{
+// 			str = get_str(info, index + 1);
+// 			lst_add(&list, QUOTES, str);
+// 		}
+// 			return;
+// 	}
+// 	else if (info->line[index] == '"')
+// 	{
+// 		if (info->line[index] + 1 != '"')
+// 		{
+// 			info->line[index];
+// 		}
+// 	}
+// }
 // int	parse_line(t_info *info, t_node *list)
 // {
 // 	int		i;	
@@ -135,12 +135,38 @@ void	parse_quotes(t_node *list, t_info *info, int index)
 // 	return (1);
 // }
 
+char	*get_cmd(t_cmd *cmd)
+{
+	int i;
+
+	
+}
+
+int	num_cmds(char *str)
+{
+	int	count;
+	int	i;
+
+	i = 0;
+	count = 1;
+	while (str[i])
+	{
+		if (str[i] == '|')
+			count++;
+		if (str[i] == 39 || str[i] == 34)
+		{
+			while (str[i] != 39 && str[i] ! = 34)
+		}
+	}
+}
+
 int	parse_line(t_info *info, t_cmd *input)
 {
 	int i;
 
 	i = 0;
-	input->cmd
+	info->n_cmd = num_cmds(info->line);
+	input->cmd = get_cmd(input);
 }
 
 int main(void)
@@ -148,11 +174,10 @@ int main(void)
 	// char buf[1024];
 	t_info	info;
 	t_cmd	input;
-	// t_node list;
 	while (1)
 	{
 		printf("%s", PURPLE);
 		info.line = readline("minishell> \033[0m");
-		parse_line(&info, &cmd);
+		parse_line(&info, &input);
 	}
 }
