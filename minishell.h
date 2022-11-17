@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/11/09 07:13:42 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:52:31 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 typedef struct s_info
 {
+	int		open_q;
 	char	*line;
 	char	**split;
 	int		n_cmd;
@@ -44,11 +45,14 @@ typedef struct s_node
 
 typedef struct s_cmd
 {
-	char	*cmd;
-	char	*arg;
-	char	*outfile;
-	char	*infile;
-	t_cmd	*next;
+	char			*cmd;
+	char			*arg;
+	char			*outfile;
+	char			*infile;
+	struct s_cmd	*next;
 } t_cmd;
+
+void	lst_add(t_cmd **list, t_info *info);
+int		num_cmds(t_info *info);
 
 #endif

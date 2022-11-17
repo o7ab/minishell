@@ -6,7 +6,7 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2022/10/02 06:51:57 by oabushar         ###   ########.fr        #
+#    Updated: 2022/11/16 10:53:03 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CC        := gcc
 FLAGS    := -Wall -Wextra -Werror
 
 SRCS        :=  parser.c \
+				cmd.c \
 				libft/ft_atoi.c \
                     libft/ft_bzero.c \
                      libft/ft_calloc.c \
