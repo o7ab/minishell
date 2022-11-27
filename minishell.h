@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/11/16 10:52:31 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/11/20 12:01:27 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_cmd
 {
 	char			*cmd;
 	char			*arg;
+	char			*flag;
 	char			*outfile;
 	char			*infile;
 	struct s_cmd	*next;
