@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:50:51 by oabushar          #+#    #+#             */
-/*   Updated: 2022/11/26 17:35:56 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:47:19 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ int alloc_quotes(char *line, int index)
 				m++;
 			}
 		}
-		if (line[index] != 34 && line[index] != 39)
+		if (line[index] != c && line[index])
 			m++;
 		index++;
 	}
-	printf("%d \n", m);
 	return (m);
 }
 
@@ -70,8 +69,9 @@ char *get_quotes(t_info *info, int index)
 	int		m;
 	char	*ret;
 	
+	c = 0;
 	if (info->line[index] && (info->line[index] == 34 || info->line[index] == 39))
-		c = info->line[index++];
+		c = info->line[index];
 	m = alloc_quotes(info->line, index);
 	if (!m)
 		return (NULL);
@@ -79,11 +79,11 @@ char *get_quotes(t_info *info, int index)
 	m = 0;
 	while (info->line[index])
 	{
+		while (info->line[index] != 34 && info->line[index] != 39)
+			ret[m++] = info->line[index++];
 		if (info->line[index] == 39 || info->line[index] == 34)
 			c = info->line[index++];
 		while (info->line[index] && info->line[index] != c)
-			ret[m++] = info->line[index++];
-		if (info->line[index] != 39 && info->line[index] != 34)
 			ret[m++] = info->line[index++];
 	}
 	return (ret);
