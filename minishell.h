@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/06 05:00:50 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:18:22 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,18 @@ typedef struct s_cmd
 	char			*cmd;
 	char			*arg;
 	char			*flag;
-	char			*outfile;
-	char			*infile;
+	char			**files;
+	char			**redir;
 	char			*full_cmd;
+	char			**s_cmd;
 	struct s_cmd	*next;
 } t_cmd;
 
-void	lst_add(t_cmd **list, t_info *info);
+void	lst_add(t_cmd **list);
 int		num_cmds(t_info *info);
 char	*get_arg(t_info *info, t_cmd *input);
 char	*get_quotes(t_info *info, int index);
 void	get_list(t_cmd *input, t_info *info);
 int		incrementer(char *s, int i);
+char	**ft_split_q(char *s, char c);
 #endif

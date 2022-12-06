@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/06 04:48:41 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:18:17 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	num_cmds(t_info *info)
 	return (count);
 }
 
-void	lst_add(t_cmd **list, t_info *info)
+void	lst_add(t_cmd **list)
 {
 	t_cmd	*new;
 	t_cmd	*ptr;
@@ -60,8 +60,6 @@ void	lst_add(t_cmd **list, t_info *info)
 	if (!new)
 		return ;
 	new->next = NULL;
-	get_list(new, info);
-	// printf("%s \n", new->cmd);
 	if (!(*list))
 		*list = new;
 	else

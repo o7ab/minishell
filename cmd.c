@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:50:51 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/04 22:21:36 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:55:13 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,12 @@ void	get_list(t_cmd *input, t_info *info)
 	int i;
 
 	i = 0;
+	if (!input)
+		return;
+	input->s_cmd = ft_split_q(input->full_cmd, ' ');
 	input->cmd = get_cmd(info);
 	if (input->cmd == NULL)
 		return ;
-	input->arg = get_arg(info, input);
-	info->line = get_rest(info);
-	printf(" the cmd is: %s\n", input->cmd);
-	printf(" the arg is: %s\n", input->arg);
+	// input->arg = get_arg(info, input);
+	// info->line = get_rest(info);
 }
