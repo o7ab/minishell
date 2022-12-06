@@ -6,7 +6,7 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2022/11/30 13:26:38 by oabushar         ###   ########.fr        #
+#    Updated: 2022/12/06 05:00:35 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,9 @@ FLAGS    := -Wall -Wextra -Werror
 
 SRCS        :=  parser.c \
 				cmd.c \
+				arg.c \
+				parser_utils.c \
+				ft_split_q.c \
 				libft/ft_atoi.c \
                     libft/ft_bzero.c \
                      libft/ft_calloc.c \
@@ -23,6 +26,7 @@ SRCS        :=  parser.c \
                      libft/ft_isalpha.c \
                      libft/ft_isascii.c \
                      libft/ft_isdigit.c \
+                     libft/ft_isspace.c \
                      libft/ft_isprint.c \
                      libft/ft_itoa.c \
                      libft/ft_lstadd_back.c \
