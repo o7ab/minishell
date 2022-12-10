@@ -6,7 +6,7 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2022/12/06 05:00:35 by oabushar         ###   ########.fr        #
+#    Updated: 2022/12/09 20:07:44 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS        :=  parser.c \
 				arg.c \
 				parser_utils.c \
 				ft_split_q.c \
+				ft_split_char.c \
 				libft/ft_atoi.c \
                     libft/ft_bzero.c \
                      libft/ft_calloc.c \

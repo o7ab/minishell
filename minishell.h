@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/06 17:18:22 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/10 22:29:53 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_cmd
 	char			**files;
 	char			**redir;
 	char			*full_cmd;
+	char			**full_op;
 	char			**s_cmd;
 	struct s_cmd	*next;
 } t_cmd;
@@ -62,4 +63,7 @@ char	*get_quotes(t_info *info, int index);
 void	get_list(t_cmd *input, t_info *info);
 int		incrementer(char *s, int i);
 char	**ft_split_q(char *s, char c);
+void	free_double(char **str);
+char	**ft_split_set(char *str, char *charset);
+
 #endif

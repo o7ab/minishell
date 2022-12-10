@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/06 17:18:17 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:44:42 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ int	incrementer(char *s, int i)
 			i++;
 	}
 	return (i);
+}
+
+void	free_double(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return;
+	while (str[i])
+		free(str[i++]);
+	free (str[i]);
+	free (str);
 }
 
 int	num_cmds(t_info *info)
