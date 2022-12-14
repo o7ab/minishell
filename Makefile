@@ -6,19 +6,21 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2022/12/09 20:07:44 by oabushar         ###   ########.fr        #
+#    Updated: 2022/12/14 12:33:50 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        := minishell
 CC        := gcc
-FLAGS    := -Wall -Wextra -Werror
+FLAGS    := -Wall -Wextra -Werror -I/usr/local/opt/readline/include
 
 SRCS        :=  parser.c \
 				cmd.c \
 				arg.c \
 				parser_utils.c \
 				ft_split_q.c \
+				redirections.c \
+				redirections_utils.c \
 				ft_split_char.c \
 				libft/ft_atoi.c \
                     libft/ft_bzero.c \
@@ -81,7 +83,7 @@ RM		    := rm -f
 
 ${NAME}:	${OBJS}
 			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME)${CLR_RMV}..."
-			${CC} ${FLAGS} -lreadline -o ${NAME} ${OBJS}
+			${CC} ${FLAGS} -I/usr/local/opt/readline/include -L/usr/local/opt/readline/lib -lreadline -o ${NAME} ${OBJS}
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 
 all:		${NAME}

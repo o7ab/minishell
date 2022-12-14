@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:50:51 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/08 21:24:17 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:21:11 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	get_list(t_cmd *input, t_info *info)
 	i = 0;
 	if (!input)
 		return;
-	get_redir(input, info);
+	get_redir(input);
 	input->s_cmd = ft_split_q(input->full_cmd, ' ');
 	printf("the first is (%s) and the second is (%s)\n", input->s_cmd[0], input->s_cmd[1]);
 	input->cmd = get_cmd(info);
