@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/14 12:35:42 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:11:42 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,25 @@ void	parse_cmds(t_cmd *input, t_info *info)
 		input->full_cmd = info->split[i++];
 		input = input->next;
 	}
+}
+
+void	get_list(t_cmd *input, t_info *info)
+{
+	int i;
+
+	i = 0;
+	if (!input)
+		return;
+	(void)info;
+	get_redir(input);
+	get_short_cmd(input);
+	input->s_cmd = ft_split_q(input->full_cmd, ' ');
+	input->cmd = get_cmd(info);
+	if (input->cmd == NULL)
+		return ;
+	free_double(input->s_cmd);
+	free_double(input->files);
+	free_double(input->redir);
 }
 
 void	parse_line(t_info *info, t_cmd *input)

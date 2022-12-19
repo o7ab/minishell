@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/08 20:44:42 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/18 02:17:13 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	free_double(char **str)
 		return;
 	while (str[i])
 		free(str[i++]);
-	free (str[i]);
 	free (str);
 }
 

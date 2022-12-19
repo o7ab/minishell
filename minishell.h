@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/12 19:21:20 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:51:09 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,17 @@ char	**ft_split_q(char *s, char c);
 void	free_double(char **str);
 char	**ft_split_set(char *str, char *charset);
 void	get_redir(t_cmd *input);
+int		check_size_of_op(t_cmd *input, int i);
+int		size_of_op(t_cmd *input, int *i, int j);
+void	skip_oop(t_cmd *input, int *i);
+int		skip_til_op(char *str, int x);
+int		number_of_redir(t_cmd *input);
+void	alloc_op_files(t_cmd *input, int x);
+void	copy_op_files(t_cmd *input, int x);
+void	alloc_redir(t_cmd *input, int n_op);
+int		check_alloc_redir(t_cmd *input, int n_op);
+char	*get_cmd(t_info *info);
+void	get_short_cmd(t_cmd *input);
+
 
 #endif
