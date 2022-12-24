@@ -6,37 +6,37 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:02:39 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/22 21:51:25 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/24 22:38:29 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_mid_arg(char *str, int i)
+int	check_mid_arg(char *str, int *i)
 {
 	int		m;
 	char	c;
 
 	m = 0;
 	c = 0;
-	if (!str[i])
+	if (!str[*i])
 		return (0);
-	while (ft_isspace(str[i]) && str[i])
-		i++;
-	while (str[i] && str[i] != '>' && str[i] != '<' && !ft_isspace(str[i]))
+	while (ft_isspace(str[*i]) && str[*i])
+		(*i)++;
+	while (str[*i] && str[*i] != '>' && str[*i] != '<' && !ft_isspace(str[*i]))
 	{
-		if (str[i] == 39 || str[i] == 34)
+		if (str[*i] == 39 || str[*i] == 34)
 		{
-			c = str[i++];
+			c = str[*i++];
 			m++;
-			while (str[i] != c && str[i])
+			while (str[*i] != c && str[*i])
 			{
-				i++;
+				(*i)++;
 				m++;
 			}
 		}
 		m++;
-		i++;
+		(*i)++;
 	}
 	return (m);
 }
@@ -48,23 +48,26 @@ int	copy_mid_arg(t_cmd *input, int *i, int m)
 	c = 0;
 	if (!input->full_cmd[*i])
 		return (m);
-	*i = get_word(input->full_cmd, *i);
 	while (ft_isspace(input->full_cmd[*i]) && input->full_cmd[*i])
 		(*i)++;
-	// printf("beofre       the char is (%c) and i is %d and s is (%s)\n", input->full_cmd[*i], *i, &input->full_cmd[*i]);
-	while (input->full_cmd[*i] && input->full_cmd[*i] != '>' && input->full_cmd[*i] != '<' && !ft_isspace(input->full_cmd[*i]))
+	input->new_cmd[m++] = ' ';
+	printf("beeeeeeforrreee cmd is (%s) and \n", &input->full_cmd[*i]);
+	while (input->full_cmd[*i] && input->full_cmd[*i] != '>' && input->full_cmd[*i] != '<')
 	{
+		printf("the char is (%c) and i is %d and s is (%s) while new is (%s)\n", input->full_cmd[*i], *i, &input->full_cmd[*i], input->new_cmd);
 		if (input->full_cmd[*i] == 39 || input->full_cmd[*i] == 34)
 		{
+			printf("test\n");
 			c = input->full_cmd[*i];
 			input->new_cmd[m++] = input->full_cmd[*i++];
 			while (input->full_cmd[*i] != c && input->full_cmd[*i])
 				input->new_cmd[m++] = input->full_cmd[*i++];
 		}
-		input->new_cmd[m++] = input->full_cmd[*i++];
-		// printf("the char is (%c) and i is %d and s is (%s)\n", input->full_cmd[*i], *i, &input->full_cmd[*i]);
+		input->new_cmd[m] = input->full_cmd[*i];
+		(*i)++;
+		m++;
 	}
-	// printf("the short new cmd is (%s) and \n", input->new_cmd);
+	printf("the short new cmd is (%s) and \n", input->new_cmd);
 	return (m);
 	
 }
@@ -88,13 +91,15 @@ void	copy_short_cmd(t_cmd *input, int m, int n_op)
 	{
 		index = skip_til_op(input->full_cmd, index);
 		skip_oop(input, &index);
-		i = copy_mid_arg(input, &index, i);
 		x++;
+		if (x == n_op)
+			break;
+		i = copy_mid_arg(input, &index, i);
 	}
 	while (input->full_cmd[index])
 		input->new_cmd[i++] = input->full_cmd[index++];
 	input->new_cmd[i] = 0;
-	// printf("the new cmd is (%s) and i is (%d)\n", input->new_cmd, i);
+	printf("the new cmd is (%s) and i is (%d)\n", input->new_cmd, i);
 }
 
 void get_short_cmd(t_cmd *input)
@@ -117,16 +122,15 @@ void get_short_cmd(t_cmd *input)
 		while (ft_isspace(input->full_cmd[i]))
 			i++;
 		skip_oop(input, &i);
-		printf(" the  before m is (%d)\n", m);
-		m += check_mid_arg(input->full_cmd, i);
-		printf(" the after m is (%d)\n", m);
+		m += check_mid_arg(input->full_cmd, &i);
 		x++;
 	}
 	while (input->full_cmd[i])
 	{
 		i++;
+		while(ft_isspace(input->full_cmd[i]) && input->full_cmd[i])
+			i++;
 		m++;
 	}
-	printf(" the m is (%d)\n", m);
-	// copy_short_cmd(input, m, n_op);
+	copy_short_cmd(input, m, n_op);
 }
