@@ -6,7 +6,7 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2022/12/18 22:52:16 by oabushar         ###   ########.fr        #
+#    Updated: 2022/12/22 11:33:48 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS        :=  parser.c \
 				cmd.c \
 				arg.c \
 				parser_utils.c \
+				parser_utils2.c \
 				ft_split_q.c \
 				redirections.c \
 				redirections_utils.c \

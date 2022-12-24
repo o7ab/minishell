@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/18 22:51:09 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/22 10:56:18 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_cmd
 	char			*full_cmd;
 	char			**full_op;
 	char			**s_cmd;
+	char			*new_cmd;
 	struct s_cmd	*next;
 } t_cmd;
 
@@ -77,6 +78,6 @@ void	alloc_redir(t_cmd *input, int n_op);
 int		check_alloc_redir(t_cmd *input, int n_op);
 char	*get_cmd(t_info *info);
 void	get_short_cmd(t_cmd *input);
-
+int		get_word(char *str, int i);
 
 #endif
