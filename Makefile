@@ -6,12 +6,12 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2022/12/22 11:33:48 by oabushar         ###   ########.fr        #
+#    Updated: 2022/12/26 02:08:22 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        := minishell
-CC        := gcc
+CC        := gcc -g
 FLAGS    := -Wall -Wextra -Werror -I/usr/local/opt/readline/include
 
 SRCS        :=  parser.c \

@@ -5,17 +5,17 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "gcc - Build and debug active file",
+			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/minishell",
 			"args": [],
-			"stopAtEntry": true,
+			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],
-			"externalConsole": false,
-			"MIMode": "lldb",
-			"preLaunchTask": "Build",
+			"externalConsole": true,
+			"MIMode": "lldb"
 		}
+
 	]
 }

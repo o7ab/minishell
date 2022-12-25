@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/19 17:11:42 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/26 02:37:10 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ void	get_list(t_cmd *input, t_info *info)
 	(void)info;
 	get_redir(input);
 	get_short_cmd(input);
-	input->s_cmd = ft_split_q(input->full_cmd, ' ');
+	input->s_cmd = ft_split_q(input->new_cmd, ' ');
+	while (input->s_cmd[i])
+	{
+		printf("the s is (%s)\n", input->s_cmd[i++]);
+	}
 	input->cmd = get_cmd(info);
 	if (input->cmd == NULL)
 		return ;
