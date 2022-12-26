@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:50:51 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/14 21:02:13 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:52:46 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,10 @@ int alloc_q_cmd(char *line, int index)
 char *get_rest(t_info *info)
 {
 	int		i;
-	int		count;
 	char	*rest;
 	int		r;
 
 	i = 0;
-	count = 0;
 	r = 0;
 	while(info->line[i] && info->line[i] != '|')
 		i++;

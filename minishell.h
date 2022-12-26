@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/22 10:56:18 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:56:16 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@
 
 # define RESET "\033[0m"
 # define PURPLE "\e[1;95m"
-# define WORD 0
-# define PIPE 1
-# define SPC 2
-# define QUOTES 3
-# define DQUOTES 4
 
 typedef struct s_info
 {

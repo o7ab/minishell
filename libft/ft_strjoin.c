@@ -36,13 +36,9 @@ static char	*join_help(char *ret, char *s1, char *s2)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*ret;
-	int		i;
-	int		j;
 
 	if (!s1 && !s2)
 		return (0);
-	i = 0;
-	j = 0;
 	if (!s1)
 		s1 = ft_strdup("");
 	ret = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
