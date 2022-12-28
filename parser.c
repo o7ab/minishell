@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/26 02:37:10 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:35:14 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void	parse_cmds(t_cmd *input, t_info *info)
 	int	i;
 
 	i = 0;
-	while (i < info->n_cmd && info->split[i])
+	while (i < info->n_cmd && info->split[i] && input)
 	{
 		input->full_cmd = info->split[i++];
+		get_list(input, info);
 		input = input->next;
 	}
 }
@@ -41,14 +42,13 @@ void	get_list(t_cmd *input, t_info *info)
 	get_redir(input);
 	get_short_cmd(input);
 	input->s_cmd = ft_split_q(input->new_cmd, ' ');
-	while (input->s_cmd[i])
-	{
-		printf("the s is (%s)\n", input->s_cmd[i++]);
-	}
-	input->cmd = get_cmd(info);
-	if (input->cmd == NULL)
-		return ;
-	free_double(input->s_cmd);
+	// while (input->s_cmd[i])
+	// {
+	// 	printf("the s is (%s)\n", input->s_cmd[i++]);
+	// }
+	// input->cmd = get_cmd(info);
+	// if (input->cmd == NULL)
+	// 	return ;
 	free_double(input->files);
 	free_double(input->redir);
 }
@@ -69,10 +69,9 @@ void	parse_line(t_info *info, t_cmd *input)
 	}
 	parse_cmds(input, info);
 	i = 0;
-	while(i < info->n_cmd && input)
+	while (input && input->s_cmd[i])
 	{
-		get_list(input, info);
-		input = input->next;
+		printf("the (%s)  \n", input->s_cmd[i++]);
 	}
 }
 
