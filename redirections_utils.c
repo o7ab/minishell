@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:49:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/18 02:00:39 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/27 14:42:05 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,15 @@ int	size_of_op(t_cmd *input, int *i, int j)
 		if (input->full_cmd[*i] == 39 || input->full_cmd[*i] == 34)
 		{
 			tmp = input->full_cmd[(*i)++];
+			j++;
 			while (input->full_cmd[*i] && input->full_cmd[*i] != tmp)
 			{
 				(*i)++;
 				j++;
 			}
-			(*i)++;	
 		}
-		else
-		{
-			(*i)++;
-			j++;
-		}
+		(*i)++;
+		j++;
 	}
 	return (j);
 }

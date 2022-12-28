@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 21:24:36 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/18 02:06:49 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:21:40 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	copy_op(t_cmd *input, int i, int x)
 		else
 			input->full_op[x][j++] = input->full_cmd[i++];	
 	}
+	printf("the j is %d\n", j);
 	input->full_op[x][j] = 0;
 }
 
@@ -61,7 +62,8 @@ int	check_redir(t_cmd *input, int n_op)
 			// printf("error\n");
 			return (0);
 		}
-		input->full_op[x] = ft_calloc(sizeof(char), size_of_op);
+		input->full_op[x] = ft_calloc(sizeof(char), size_of_op + 1);
+		printf("the size of the op is %d\n", size_of_op);
 		skip_oop(input, &i);
 		x++;
 	}

@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:44:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/18 01:56:53 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:55:35 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,12 @@ void	alloc_op_files(t_cmd *input, int x)
 	i = 0;
 	op_len = 0;
 	file_len = 0;
-	while (input->full_op[x][i] && input->full_op[x][i] == '>' && input->full_op[x][i] == '<')
+	while (input->full_op[x][i] && (input->full_op[x][i] == '>' || input->full_op[x][i] == '<'))
 	{
 		i++;
 		op_len++;
 	}
+	// printf(" the redir is(%d) \n", op_len);
 	input->redir[x] = malloc(op_len + 1);
 	if (!input->redir[x])
 		return ;

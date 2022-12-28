@@ -6,13 +6,13 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2022/12/26 02:08:22 by oabushar         ###   ########.fr        #
+#    Updated: 2022/12/26 18:16:04 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        := minishell
-CC        := gcc -g
-FLAGS    := -Wall -Wextra -Werror -I/usr/local/opt/readline/include
+CC 			= gcc -g3 -I/usr/local/opt/readline/include
+FLAGS    	:= -Wall -Wextra -Werror
 
 SRCS        :=  parser.c \
 				cmd.c \
@@ -86,7 +86,7 @@ RM		    := rm -f
 
 ${NAME}:	${OBJS}
 			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME)${CLR_RMV}..."
-			${CC} ${FLAGS} -I/usr/local/opt/readline/include -L/usr/local/opt/readline/lib -lreadline -o ${NAME} ${OBJS}
+			${CC} ${FLAGS} $(OBJS) -I/usr/local/opt/readline/include -L/usr/local/opt/readline/lib -lreadline -o $(NAME)
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 
 all:		${NAME}
