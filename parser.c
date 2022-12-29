@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/28 22:30:18 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:40:11 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@ void	ft_exit()
 	exit(1);
 }
 
+void	init_input(t_cmd *input)
+{
+	input->cmd = NULL;
+	input->arg = NULL;
+	input->flag = NULL;
+	input->files = NULL;
+	input->redir = NULL;
+	input->full_cmd = NULL;
+	input->full_op = NULL;
+	input->s_cmd = NULL;
+	input->new_cmd = NULL;
+}
+
 void	parse_cmds(t_cmd **input, t_info **info)
 {
 	int	i;
@@ -27,6 +40,7 @@ void	parse_cmds(t_cmd **input, t_info **info)
 	tmp = *input;
 	while (i < (*info)->n_cmd && (*info)->split[i] && *input)
 	{
+		init_input(*input);
 		(*input)->full_cmd = (*info)->split[i++];
 		get_list(*input, *info);
 		*input = (*input)->next;
@@ -73,19 +87,21 @@ void	parse_line(t_info **info, t_cmd **input)
 		i++;
 	}
 	parse_cmds(input, info);
+	i = 0;
+	while (*input)
+	{
+		while ((*input)->s_cmd[i])
+		{
+			printf(" the s is (%s)\n", (*input)->s_cmd[i++]);
+		}
+		i = 0;
+		(*input) = (*input)->next;
+	}
 }
 
-void	init_struct(t_cmd *input, t_info *info, char **env)
+void	init_info(t_info *info, char **env)
 {
-	input->full_cmd = NULL;
-	input->full_op = NULL;
-	input->new_cmd = NULL;
-	input->s_cmd = NULL;
-	input->cmd = NULL;
 	info->env = alloc_env(env);
-	input->files = NULL;
-	input->redir = NULL;
-	input->next = NULL;
 	info->line = NULL;
 	info->split = NULL;
 	info->n_cmd = 0;
@@ -102,7 +118,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	info = ft_calloc(1, sizeof(t_info));
 	input = ft_calloc(1, sizeof(t_cmd));
-	init_struct(input, info, env);
+	init_info(info, env);
 	while (1)
 	{
 		printf("%s", PURPLE);

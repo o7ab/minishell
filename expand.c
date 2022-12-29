@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 21:32:50 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/28 22:36:46 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:36:28 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_env(char *str, t_cmd *input)
 	while (str[i] && str[i] != ' ' && str[i] != 34 && str[i] != 39)
 		i++;
 	tmp = ft_substr(str, 0, i);
-	tmp2 = get_env_value(tmp, input);
+	// tmp2 = get_env_value(tmp, input);
 	free(tmp);
 	return (tmp2);
 }
