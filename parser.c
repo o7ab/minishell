@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/28 17:45:02 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/28 22:30:18 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ void	get_list(t_cmd *input, t_info *info)
 	get_redir(input);
 	get_short_cmd(input);
 	input->s_cmd = ft_split_q(input->new_cmd, ' ');
-	// while (input->s_cmd[i])
-	// {
-	// 	printf("the s is (%s)\n", input->s_cmd[i++]);
-	// }
+	while (input->s_cmd[i])
+	{
+		check_env(input->s_cmd[i], input);
+		i++;
+	}
+	
 	// input->cmd = get_cmd(info);
 	// if (input->cmd == NULL)
 	// 	return ;
@@ -73,24 +75,14 @@ void	parse_line(t_info **info, t_cmd **input)
 	parse_cmds(input, info);
 }
 
-void	test_func(t_cmd *input, t_info *info)
-{
-	int i = 0;
-	
-	while (input && input->s_cmd[i])
-	{
-		printf("the      (%s)  \n", input->s_cmd[i++]);
-		printf("the     info  (%s)  \n", info->line);
-	}
-}
-
-void	init_struct(t_cmd *input, t_info *info)
+void	init_struct(t_cmd *input, t_info *info, char **env)
 {
 	input->full_cmd = NULL;
 	input->full_op = NULL;
 	input->new_cmd = NULL;
 	input->s_cmd = NULL;
 	input->cmd = NULL;
+	info->env = alloc_env(env);
 	input->files = NULL;
 	input->redir = NULL;
 	input->next = NULL;
@@ -100,22 +92,23 @@ void	init_struct(t_cmd *input, t_info *info)
 	info->open_q = 0;
 }
 
-int	main(void)
+int	main(int ac, char **av, char **env)
 {
 	// char buf[1024];
 	t_info	*info;
 	t_cmd	*input;
 
+	(void)ac;
+	(void)av;
 	info = ft_calloc(1, sizeof(t_info));
 	input = ft_calloc(1, sizeof(t_cmd));
-	init_struct(input, info);
+	init_struct(input, info, env);
 	while (1)
 	{
 		printf("%s", PURPLE);
 		info->line = readline("minishell> \033[0m");
 		add_history(info->line);
 		parse_line(&info, &input);
-		test_func(input, info);
 	}
 	return 0;
 }

@@ -6,7 +6,7 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2022/12/26 18:16:04 by oabushar         ###   ########.fr        #
+#    Updated: 2022/12/28 22:18:43 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS        :=  parser.c \
 				redirections_utils.c \
 				redirections_utils2.c \
 				short_cmd.c \
+				expand.c \
 				ft_split_char.c \
 				libft/ft_atoi.c \
                     libft/ft_bzero.c \

@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/26 17:56:16 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/28 22:20:01 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_info
 {
 	int		open_q;
 	char	*line;
+	char	*cmd;
+	char	**env;
 	char	**split;
 	int		n_cmd;
 }	t_info;
@@ -74,5 +76,7 @@ int		check_alloc_redir(t_cmd *input, int n_op);
 char	*get_cmd(t_info *info);
 void	get_short_cmd(t_cmd *input);
 int		get_word(char *str, int i);
+char	**alloc_env(char **env);
+void	check_env(char *str, t_cmd *input);
 
 #endif
