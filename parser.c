@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/29 14:40:11 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/30 23:00:23 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	get_list(t_cmd *input, t_info *info)
 	input->s_cmd = ft_split_q(input->new_cmd, ' ');
 	while (input->s_cmd[i])
 	{
-		check_env(input->s_cmd[i], input);
+		input->s_cmd[i] = check_env(input->s_cmd[i], input, info);
+		printf("s_cmd (%s)\n", input->s_cmd[i]);
 		i++;
 	}
 	
@@ -88,15 +89,6 @@ void	parse_line(t_info **info, t_cmd **input)
 	}
 	parse_cmds(input, info);
 	i = 0;
-	while (*input)
-	{
-		while ((*input)->s_cmd[i])
-		{
-			printf(" the s is (%s)\n", (*input)->s_cmd[i++]);
-		}
-		i = 0;
-		(*input) = (*input)->next;
-	}
 }
 
 void	init_info(t_info *info, char **env)

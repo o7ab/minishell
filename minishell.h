@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/28 22:20:01 by oabushar         ###   ########.fr       */
+/*   Updated: 2022/12/30 20:24:00 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ char	*get_cmd(t_info *info);
 void	get_short_cmd(t_cmd *input);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
-void	check_env(char *str, t_cmd *input);
+char	*check_env(char *str, t_cmd *input, t_info *info);
 
 #endif
