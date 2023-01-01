@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 04:46:39 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/06 04:48:05 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/01 23:21:17 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	wordscount_og(char *s, char c)
 			words++;
 			flag = 0;
 		}
-		i++;
+		if (s[i])
+			i++;
 	}
 	return (words);
 }
@@ -73,8 +74,11 @@ int	incrementer_2(char *s, int i, char c)
 				strl++;
 			}
 		}
-		if (i++ >= 0)
+		if (s[i] && s[i] != c)
+		{
 			strl++;
+			i++;
+		}
 	}
 	return (strl);
 }

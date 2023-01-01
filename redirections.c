@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 21:24:36 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/28 16:29:36 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/01 22:15:40 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	check_copy_redir(t_cmd *input, int n_op)
 	int	i;
 
 	x = 0;
-	if (!check_redir(input, n_op))
+	if (!check_redir(input, n_op) || n_op == 0)
 	{
 		input->full_op = NULL;
 		input->files = NULL;
@@ -117,6 +117,13 @@ void	get_redir(t_cmd *input)
 
 	n_op = number_of_redir(input);
 	x = 0;
+	if (!n_op)
+	{
+		input->full_op = NULL;
+		input->files = NULL;
+		input->redir = NULL;
+		return;
+	}
 	if (!check_copy_redir(input, n_op))
 		return;
 	get_op_files(input, n_op);

@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:44:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/26 18:55:35 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/01 23:14:20 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	number_of_redir(t_cmd *input)
 		}
 		else if ((input->full_cmd[x] != '<' && input->full_cmd[x] != '>') && i == 0)
 			i = 1;
-		x++;
+		if (input->full_cmd[x])
+			x++;
 	}
 	return (n);
 }

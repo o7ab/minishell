@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 21:02:39 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/26 02:37:47 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/01 22:39:25 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ void	copy_short_cmd(t_cmd *input, int m, int n_op)
 			input->new_cmd[i++] = input->full_cmd[index++];
 		while (ft_isspace(input->full_cmd[index]) && input->full_cmd[index])
 			index++;
-		input->new_cmd[i++] = input->full_cmd[index++];
+		if (input->full_cmd[index])
+			input->new_cmd[i++] = input->full_cmd[index++];
 	}
 	input->new_cmd[i] = 0;
 }
@@ -135,9 +136,11 @@ void get_short_cmd(t_cmd *input)
 	i = 0;
 	m = 0;
 	x = 0;
+	n_op = number_of_redir(input);
+	if (!n_op)
+		return ;
 	i = skip_til_op(input->full_cmd, i);
 	m = i;
-	n_op = number_of_redir(input);
 	while(x < n_op && input->full_cmd[i])
 	{
 		skip_oop(input, &i);

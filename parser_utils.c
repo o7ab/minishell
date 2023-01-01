@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/18 02:17:13 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/01 23:13:48 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	num_cmds(t_info *info)
 			if (info->line[i] != q)
 				info->open_q = 1;
 		}
-		i++;
+		if (info->line[i])
+			i++;
 	}
 	return (count);
 }

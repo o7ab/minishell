@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/30 23:00:23 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/01 23:39:56 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,22 @@ void	parse_cmds(t_cmd **input, t_info **info)
 	while (i < (*info)->n_cmd && (*info)->split[i] && *input)
 	{
 		init_input(*input);
-		(*input)->full_cmd = (*info)->split[i++];
+		(*input)->full_cmd = ft_strdup((*info)->split[i++]);
 		get_list(*input, *info);
 		*input = (*input)->next;
 	}
 	*input = tmp;
+	// i = 0;
+	// while (*input)
+	// {
+	// 	while ((*input)->s_cmd[i] != NULL)
+	// 	{
+	// 		printf("s_cmd: %s \n", (*input)->s_cmd[i]);
+	// 		i++;
+	// 	}
+	// 	i = 0;
+	// 	*input = (*input)->next;
+	// }
 }
 
 void	get_list(t_cmd *input, t_info *info)
@@ -55,20 +66,22 @@ void	get_list(t_cmd *input, t_info *info)
 	i = 0;
 	if (!input)
 		return;
-	(void)info;
 	get_redir(input);
+	// printf("full cmd: %s and its strlen is %ld\n", input->full_cmd, ft_strlen(input->full_cmd));
 	get_short_cmd(input);
+	if (!input->new_cmd)
+		input->new_cmd = ft_strdup(input->full_cmd);
 	input->s_cmd = ft_split_q(input->new_cmd, ' ');
 	while (input->s_cmd[i])
 	{
 		input->s_cmd[i] = check_env(input->s_cmd[i], input, info);
-		printf("s_cmd (%s)\n", input->s_cmd[i]);
 		i++;
 	}
 	
 	// input->cmd = get_cmd(info);
 	// if (input->cmd == NULL)
 	// 	return ;
+	free_double(input->s_cmd);
 	free_double(input->files);
 	free_double(input->redir);
 }
@@ -88,7 +101,6 @@ void	parse_line(t_info **info, t_cmd **input)
 		i++;
 	}
 	parse_cmds(input, info);
-	i = 0;
 }
 
 void	init_info(t_info *info, char **env)
