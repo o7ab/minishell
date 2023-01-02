@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 21:32:50 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/01 23:38:23 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/02 15:05:11 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	check_if_var(char *var, int i)
 			break;
 		i++;
 	}
-	if (var[i] == '\0' || var[i] == 34 || ft_isspace(var[i]) == 1 
-		|| var[i] == 39 || var[i] == '>' || var[i] == '<')
+	if (!ft_isalnum(var[i]) && var[i] != '_')
 			return (i);
 	return (0);
 }
@@ -43,6 +42,8 @@ char	*var_error(char *str)
 		return (ft_strdup(""));
 	while (str[i] != '\0' && ft_isalnum(str[i]) == 1 && str[i] != '_')
 		i++;
+	if (str[i] != 0 && i == 0 && (str[i] == 34 || str[i] == 39))
+		return (str);
 	if (str[i] != 0 && i == 0 && ft_isalnum(str[i]) == 0 && str[i] != '_')
 	{
 		tmp2 = ft_strdup("$");
@@ -55,7 +56,7 @@ char	*var_error(char *str)
 	return (ft_strdup(""));
 }
 
-char	*get_env(char *str, t_cmd *input, t_info *info)
+char	*get_env(char *str, t_info *info)
 {
 	int		i;
 	char	*var;
@@ -64,8 +65,6 @@ char	*get_env(char *str, t_cmd *input, t_info *info)
 
 	i = 0;
 	tmp2 = NULL;
-	(void) input;
-	// (void) info;
 	if (!str)
 		return (NULL);
 	i = check_if_var(str, i);
@@ -83,14 +82,13 @@ char	*get_env(char *str, t_cmd *input, t_info *info)
 			tmp = ft_strjoin(tmp2, tmp);
 			break ;
 		}
-		// printf("the env is <(%s)>\n", info->env[i]);
 		i++;
 	}
 	free(var);
 	return (tmp);
 }
 
-char	*check_env(char *str, t_cmd *input, t_info *info)
+char	*check_env(char *str, t_info *info)
 {
 	int		i;
 	char	*tmp;
@@ -108,13 +106,12 @@ char	*check_env(char *str, t_cmd *input, t_info *info)
 			tmp = ft_substr(str, 0, i);
 			tmp2 = ft_substr(str, i + 1, ft_strlen(str) - i);
 			free(str);
-			str = ft_strjoin(tmp, get_env(tmp2, input, info));
+			str = ft_strjoin(tmp, get_env(tmp2, info));
 			free(tmp2);
-			// i = 0;
 		}
 		if (str[i] == 39)
 			i = incrementer(str, i);
-		if (str[i])
+		if (str[i] && str[i] != '$')
 			i++;
 	}
 	return (str);

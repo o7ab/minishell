@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/01 23:39:56 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/02 14:41:58 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ void	parse_cmds(t_cmd **input, t_info **info)
 		*input = (*input)->next;
 	}
 	*input = tmp;
-	// i = 0;
-	// while (*input)
-	// {
-	// 	while ((*input)->s_cmd[i] != NULL)
-	// 	{
-	// 		printf("s_cmd: %s \n", (*input)->s_cmd[i]);
-	// 		i++;
-	// 	}
-	// 	i = 0;
-	// 	*input = (*input)->next;
-	// }
+	i = 0;
+	while (*input)
+	{
+		while ((*input)->s_cmd[i] != NULL)
+		{
+			printf("s_cmd: %s \n", (*input)->s_cmd[i]);
+			i++;
+		}
+		i = 0;
+		*input = (*input)->next;
+	}
 }
 
 void	get_list(t_cmd *input, t_info *info)
@@ -74,14 +74,11 @@ void	get_list(t_cmd *input, t_info *info)
 	input->s_cmd = ft_split_q(input->new_cmd, ' ');
 	while (input->s_cmd[i])
 	{
-		input->s_cmd[i] = check_env(input->s_cmd[i], input, info);
+		input->s_cmd[i] = check_env(input->s_cmd[i], info);
+		input->s_cmd[i] = check_quotes(input->s_cmd[i]);
 		i++;
 	}
-	
-	// input->cmd = get_cmd(info);
-	// if (input->cmd == NULL)
-	// 	return ;
-	free_double(input->s_cmd);
+	// free_double(input->s_cmd);
 	free_double(input->files);
 	free_double(input->redir);
 }
@@ -127,6 +124,10 @@ int	main(int ac, char **av, char **env)
 	{
 		printf("%s", PURPLE);
 		info->line = readline("minishell> \033[0m");
+		if (info->line == NULL)
+			return 0;
+		if (info->line[0] == 0)
+			continue;
 		add_history(info->line);
 		parse_line(&info, &input);
 	}

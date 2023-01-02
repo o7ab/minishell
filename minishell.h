@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/30 20:24:00 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/02 14:13:58 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ typedef struct s_cmd
 
 void	lst_add(t_cmd **list);
 int		num_cmds(t_info *info);
-char	*get_arg(t_info *info, t_cmd *input);
-char	*get_quotes(t_info *info, int index);
 void	get_list(t_cmd *input, t_info *info);
 int		incrementer(char *s, int i);
 char	**ft_split_q(char *s, char c);
@@ -77,6 +75,7 @@ char	*get_cmd(t_info *info);
 void	get_short_cmd(t_cmd *input);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
-char	*check_env(char *str, t_cmd *input, t_info *info);
+char	*check_env(char *str, t_info *info);
+char	*check_quotes(char *str);
 
 #endif

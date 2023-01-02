@@ -6,7 +6,7 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2022/12/28 22:18:43 by oabushar         ###   ########.fr        #
+#    Updated: 2023/01/02 12:51:00 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@ CC 			= gcc -g3 -I/usr/local/opt/readline/include
 FLAGS    	:= -Wall -Wextra -Werror
 
 SRCS        :=  parser.c \
-				cmd.c \
-				arg.c \
 				parser_utils.c \
 				parser_utils2.c \
 				ft_split_q.c \
@@ -25,6 +23,7 @@ SRCS        :=  parser.c \
 				redirections_utils2.c \
 				short_cmd.c \
 				expand.c \
+				quotes.c \
 				ft_split_char.c \
 				libft/ft_atoi.c \
                     libft/ft_bzero.c \
