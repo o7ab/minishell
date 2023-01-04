@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 17:19:14 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/04 23:13:32 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,16 @@ void parse_line()
 		i++;
 	}
 	parse_cmds();
+	i = 0;
+	while (g_info->cmd)
+	{
+		while (g_info->cmd->s_cmd[i])
+		{
+			printf(" the s_cmd is (%s)\n", g_info->cmd->s_cmd[i++]);
+		}
+		i = 0;
+		g_info->cmd = g_info->cmd->next;
+	}
 }
 
 void init_info(char **env)
@@ -122,9 +132,9 @@ int main(int ac, char **av, char **env)
 			continue;
 		add_history(g_info->line);
 		parse_line();
-		// test_fun(&input);
-		get_path();
-		one_pipe();
+		// executr
+		// get_path();
+		// one_pipe();
 	}
 	return 0;
 }
