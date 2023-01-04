@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 10:34:40 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/04 10:37:19 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void	init_input(t_cmd *input)
 	input->new_cmd = NULL;
 }
 
-void	parse_cmds(t_cmd **input, t_info **info)
+void	parse_cmds(t_cmd **input, t_info **g_info)
 {
 	int	i;
 	t_cmd *tmp;
 
 	i = 0;
 	tmp = *input;
-	while (i < (*info)->n_cmd && (*info)->split[i] && *input)
+	while (i < (*g_info)->n_cmd && (*g_info)->split[i] && *input)
 	{
 		init_input(*input);
 		(*input)->full_cmd = ft_strdup((*info)->split[i++]);
@@ -60,7 +60,7 @@ void	parse_cmds(t_cmd **input, t_info **info)
 	}
 }
 
-void	get_list(t_cmd *input, t_info *info)
+void	get_list(t_cmd *input, t_info *g_info)
 {
 	int i;
 
@@ -84,16 +84,16 @@ void	get_list(t_cmd *input, t_info *info)
 	free_double(input->redir);
 }
 
-void	parse_line(t_info **info, t_cmd **input)
+void	parse_line(t_info **g_info, t_cmd **input)
 {
 	int i;
 
 	i = 0;
-	(*info)->open_q = 0;
+	(*g_info)->open_q = 0;
 	(*input) = (NULL);
-	(*info)->n_cmd = num_cmds(*info);
-	(*info)->split = ft_split_q((*info)->line, '|');
-	while (i < (*info)->n_cmd)
+	(*g_info)->n_cmd = num_cmds(*g_info);
+	(*g_info)->split = ft_split_q((*g_info)->line, '|');
+	while (i < (*g_info)->n_cmd)
 	{
 		lst_add(input);
 		i++;
@@ -101,47 +101,33 @@ void	parse_line(t_info **info, t_cmd **input)
 	parse_cmds(input, info);
 }
 
-void	init_info(t_info *info, char **env)
+void	init_info(t_info *g_info, char **env)
 {
-	info->env = alloc_env(env);
-	info->line = NULL;
-	info->split = NULL;
-	info->n_cmd = 0;
-	info->open_q = 0;
+	g_info->env = alloc_env(env);
+	g_info->line = NULL;
+	g_info->split = NULL;
+	g_info->n_cmd = 0;
+	g_info->open_q = 0;
 }
 
-void	test_fun(t_cmd **in)
+int	test_fun(t_cmd **in)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	printf("%s\n",in[i]->s_cmd[0]);
-	while (in[i])
-	{
-		j = 0;
-		while (in[i]->s_cmd[j])
-		{
-			printf("dd%s\n",in[i]->s_cmd[j]);
-			j++;
-		}
-		i++;
-	}
-	printf("this is i = %d\n",i);
+    int count = 0;
+    while (in[count] != NULL)
+        count++;
+    return count;
 }
 
 int	main(int ac, char **av, char **env)
 {
-	t_info	*info;
 	t_cmd	*input;
 	
 	(void)ac;
 	(void)av;
-	info = ft_calloc(1, sizeof(t_info));
+	g_info = ft_calloc(1, sizeof(t_info));
 	input = ft_calloc(1, sizeof(t_cmd));
-	init_info(info, env);
-	__environ = env;
+	init_info(g_info, env);
+	g_info->cmd_struct = input;
 	while (1)
 	{
 		printf("%s", PURPLE);

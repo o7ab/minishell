@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/01 23:13:48 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/04 10:36:27 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_double(char **str)
 	free (str);
 }
 
-int	num_cmds(t_info *info)
+int	num_cmds(t_info *g_info)
 {
 	int		count;
 	int		i;
@@ -46,17 +46,17 @@ int	num_cmds(t_info *info)
 
 	i = 0;
 	count = 1;
-	while (info->line[i])
+	while (g_info->line[i])
 	{
-		if (info->line[i] == '|')
+		if (g_info->line[i] == '|')
 			count++;
-		if (info->line[i] == 39 || info->line[i] == 34)
+		if (g_info->line[i] == 39 || g_info->line[i] == 34)
 		{
-			q = info->line[i++];
-			while (info->line[i] != q && info->line[i])
+			q = g_info->line[i++];
+			while (g_info->line[i] != q && g_info->line[i])
 				i++;
-			if (info->line[i] != q)
-				info->open_q = 1;
+			if (g_info->line[i] != q)
+				g_info->open_q = 1;
 		}
 		if (info->line[i])
 			i++;

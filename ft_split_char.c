@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 20:04:13 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/09 20:07:19 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/03 20:10:26 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		*get_words_size(char *str, char *charset)
 
 	i = 0;
 	words_count = get_words_count(str, charset);
-	words_size = malloc(words_count * sizeof(int));
+	words_size = malloc((words_count + 1) * sizeof(int));
 	while (i <= words_count)
 	{
 		words_size[i] = 0;
@@ -94,7 +94,7 @@ char	**ft_split_set(char *str, char *charset)
 		if (!is_separator(str[i], charset))
 		{
 			if (i == 0 || is_word(str[i], str[i - 1], charset))
-				words[index] = malloc(words_size[index] * sizeof(char));
+				words[index] = malloc((words_size[index] + 1) * sizeof(char));
 			words[index][j] = str[i];
 			words[index][++j] = '\0';
 		}

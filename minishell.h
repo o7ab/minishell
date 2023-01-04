@@ -6,39 +6,24 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 10:33:05 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/04 10:36:22 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+# pragma once
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "libft/libft.h"
 
 # define RESET "\033[0m"
 # define PURPLE "\e[1;95m"
-
-typedef struct s_generl
-{
-	char **enviro;
-}	t_generl;
-
-extern t_generl globalStruct;
-typedef struct s_info
-{
-	int		open_q;
-	char	*line;
-	char	*cmd;
-	char	**env;
-	char	**split;
-	int		n_cmd;
-}	t_info;
 
 typedef struct s_node
 {
@@ -61,6 +46,20 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 } t_cmd;
 
+typedef struct s_info
+{
+	int		open_q;
+	char	*line;
+	char	*cmd;
+	char	**env;
+	char	**split;
+	int		n_cmd;
+	t_cmd	*cmd_struct;
+}	t_info;
+
+t_info *g_info;
+
+
 void	lst_add(t_cmd **list);
 int		num_cmds(t_info *info);
 void	get_list(t_cmd *input, t_info *info);
@@ -78,12 +77,13 @@ void	alloc_op_files(t_cmd *input, int x);
 void	copy_op_files(t_cmd *input, int x);
 void	alloc_redir(t_cmd *input, int n_op);
 int		check_alloc_redir(t_cmd *input, int n_op);
-char	*get_cmd(t_info *info);
+char	*get_cmd(t_info *g_info);
 void	get_short_cmd(t_cmd *input);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
-void    one_pipe(t_cmd **input, t_info **info);
-char *get_path(void);
-char	*check_env(char *str, t_cmd *input, t_info *info);
+// void    one_pipe(t_cmd **input, t_info **g_info);
+void    one_pipe(void);
+char 	*get_path(void);
+char	*check_env(char *str, t_cmd *input, t_info *g_info);
 
 #endif

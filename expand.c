@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 21:32:50 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 10:32:54 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/04 10:36:00 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*get_env(char *str, t_info *info)
 	return (ft_strdup(""));
 }
 
-char	*get_env(char *str, t_cmd *input, t_info *info)
+char	*get_env(char *str, t_cmd *input, t_info *g_info)
 {
 	int		i;
 	char	*var;
@@ -101,11 +101,11 @@ char	*get_env(char *str, t_cmd *input, t_info *info)
 	var = ft_substr(str, 0, i + 1);
 	var[i] = '=';
 	i = 0;
-	while (info->env[i])
+	while (g_info->env[i])
 	{
-		if (ft_strncmp(var, info->env[i], ft_strlen(var)) == 0)
+		if (ft_strncmp(var, g_info->env[i], ft_strlen(var)) == 0)
 		{
-			tmp2 = ft_substr(info->env[i], ft_strlen(var), ft_strlen(info->env[i]) - ft_strlen(var));
+			tmp2 = ft_substr(g_info->env[i], ft_strlen(var), ft_strlen(g_info->env[i]) - ft_strlen(var));
 			tmp = ft_strjoin(tmp2, tmp);
 			break ;
 		}
