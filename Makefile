@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
+#    By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2023/01/02 12:51:00 by oabushar         ###   ########.fr        #
+#    Updated: 2023/01/04 10:25:55 by dfurneau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,10 @@ CC 			= gcc -g3 -I/usr/local/opt/readline/include
 FLAGS    	:= -Wall -Wextra -Werror
 
 SRCS        :=  parser.c \
+				cmd.c \
+				arg.c \
+                    pipes.c\
+                    env.c\
 				parser_utils.c \
 				parser_utils2.c \
 				ft_split_q.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/02 14:41:58 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/04 10:26:48 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,38 @@ void	init_info(t_info *info, char **env)
 	info->open_q = 0;
 }
 
+void	test_fun(t_cmd **in)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	printf("%s\n",in[i]->s_cmd[0]);
+	while (in[i])
+	{
+		j = 0;
+		while (in[i]->s_cmd[j])
+		{
+			printf("dd%s\n",in[i]->s_cmd[j]);
+			j++;
+		}
+		i++;
+	}
+	printf("this is i = %d\n",i);
+}
+
 int	main(int ac, char **av, char **env)
 {
-	// char buf[1024];
 	t_info	*info;
 	t_cmd	*input;
-
+	
 	(void)ac;
 	(void)av;
 	info = ft_calloc(1, sizeof(t_info));
 	input = ft_calloc(1, sizeof(t_cmd));
 	init_info(info, env);
+	__environ = env;
 	while (1)
 	{
 		printf("%s", PURPLE);
@@ -130,6 +151,9 @@ int	main(int ac, char **av, char **env)
 			continue;
 		add_history(info->line);
 		parse_line(&info, &input);
+		test_fun(&input);
+		// get_path();
+		// one_pipe(&input, &info);
 	}
 	return 0;
 }

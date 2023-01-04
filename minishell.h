@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/02 14:13:58 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/04 10:27:08 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # define RESET "\033[0m"
 # define PURPLE "\e[1;95m"
 
+typedef struct s_generl
+{
+	char **enviro;
+}	t_generl;
+
+extern t_generl globalStruct;
 typedef struct s_info
 {
 	int		open_q;
@@ -75,7 +81,7 @@ char	*get_cmd(t_info *info);
 void	get_short_cmd(t_cmd *input);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
-char	*check_env(char *str, t_info *info);
-char	*check_quotes(char *str);
-
+void	check_env(char *str, t_cmd *input);
+void    one_pipe(t_cmd **input, t_info **info);
+char *get_path(void);
 #endif
