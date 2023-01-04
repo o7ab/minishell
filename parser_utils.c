@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 10:36:27 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:13:36 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	num_cmds(t_info *g_info)
 			if (g_info->line[i] != q)
 				g_info->open_q = 1;
 		}
-		if (info->line[i])
+		if (g_info->line[i])
 			i++;
 	}
 	return (count);
