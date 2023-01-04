@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/02 14:41:58 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:43:32 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int	main(int ac, char **av, char **env)
 	info = ft_calloc(1, sizeof(t_info));
 	input = ft_calloc(1, sizeof(t_cmd));
 	init_info(info, env);
+	// info->cmd_list = ft_calloc(1, sizeof(t_cmd));
 	while (1)
 	{
 		printf("%s", PURPLE);

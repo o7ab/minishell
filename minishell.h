@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/02 14:13:58 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:43:22 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_info
 	char	**env;
 	char	**split;
 	int		n_cmd;
+	// t_cmd   *cmd_list;
 }	t_info;
 
 typedef struct s_node

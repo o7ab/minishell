@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 21:32:50 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/02 15:05:11 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:14:58 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ char	*check_env(char *str, t_info *info)
 			free(str);
 			str = ft_strjoin(tmp, get_env(tmp2, info));
 			free(tmp2);
+			i++;
 		}
 		if (str[i] == 39)
 			i = incrementer(str, i);
