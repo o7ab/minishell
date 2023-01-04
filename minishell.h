@@ -6,9 +6,10 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 10:27:08 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/04 10:33:05 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -81,7 +82,8 @@ char	*get_cmd(t_info *info);
 void	get_short_cmd(t_cmd *input);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
-void	check_env(char *str, t_cmd *input);
 void    one_pipe(t_cmd **input, t_info **info);
 char *get_path(void);
+char	*check_env(char *str, t_cmd *input, t_info *info);
+
 #endif
