@@ -58,7 +58,7 @@ void    one_pipe()
   }
   while (i < g_info->n_cmd)
   {
-    if (g_info->cmd_struct->s_cmd[0] && put_cmd_in_path(g_info->cmd_struct->s_cmd[0], path) != NULL)
+    if (g_info->cmd->s_cmd[0] && put_cmd_in_path(g_info->cmd->s_cmd[0], path) != NULL)
     {
       pid = fork();
       if (pid == 0)
@@ -75,7 +75,7 @@ void    one_pipe()
           close(fd[0]);
           close(fd[1]);
         }
-        if(execve(put_cmd_in_path(g_info->cmd_struct->s_cmd[0], path), g_info->cmd_struct->s_cmd, NULL) < 0)
+        if(execve(put_cmd_in_path(g_info->cmd->s_cmd[0], path), g_info->cmd->s_cmd, NULL) < 0)
         {
           write(2, "ERROR IN excv1()\n", 17);
           exit(1);
@@ -94,7 +94,7 @@ void    one_pipe()
       }
     }
     i++;
-    g_info->cmd_struct = g_info->cmd_struct->next;
+    g_info->cmd = g_info->cmd->next;
   }
   i = 0;
   while(i < 2)

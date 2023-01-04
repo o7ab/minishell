@@ -6,13 +6,13 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:44:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/01 23:14:20 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:27:57 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_alloc_redir(t_cmd *input, int n_op)
+int	check_alloc_redir(int n_op)
 {
 	int	i;
 	int	x;
@@ -22,26 +22,26 @@ int	check_alloc_redir(t_cmd *input, int n_op)
 	x = 0;
 	while (x < n_op)
 	{
-		i = skip_til_op(input->full_cmd, i);
-		size_of_op = check_size_of_op(input, i);
+		i = skip_til_op(g_info->cmd->full_cmd, i);
+		size_of_op = check_size_of_op(i);
 		if (!size_of_op)
 			return (0);
-		skip_oop(input, &i);
+		skip_oop(&i);
 		x++;
 	}
 	return (1);
 }
 
-void	alloc_redir(t_cmd *input, int n_op)
+void	alloc_redir(int n_op)
 {
-	input->full_op = malloc((n_op + 1) * sizeof(char *));
-	input->files = malloc((n_op + 1) * sizeof(char *));
-	input->redir = malloc((n_op + 1)* sizeof(char *));
-	input->full_op[n_op] = 0;
-	input->redir[n_op] = 0;
-	input->files[n_op] = 0;
+	g_info->cmd->full_op = malloc((n_op + 1) * sizeof(char *));
+	g_info->cmd->files = malloc((n_op + 1) * sizeof(char *));
+	g_info->cmd->redir = malloc((n_op + 1)* sizeof(char *));
+	g_info->cmd->full_op[n_op] = 0;
+	g_info->cmd->redir[n_op] = 0;
+	g_info->cmd->files[n_op] = 0;
 }
-int	number_of_redir(t_cmd *input)
+int	number_of_redir()
 {
 	int		n;
 	int		x;
@@ -50,23 +50,23 @@ int	number_of_redir(t_cmd *input)
 	n = 0;
 	x = 0;
 	i = 1;
-	while (input->full_cmd[x])
+	while (g_info->cmd->full_cmd[x])
 	{
-		x = incrementer(input->full_cmd, x);
-		if ((input->full_cmd[x] == '<' || input->full_cmd[x] == '>') && i)
+		x = incrementer(g_info->cmd->full_cmd, x);
+		if ((g_info->cmd->full_cmd[x] == '<' || g_info->cmd->full_cmd[x] == '>') && i)
 		{
 			i = 0;
 			n++;
 		}
-		else if ((input->full_cmd[x] != '<' && input->full_cmd[x] != '>') && i == 0)
+		else if ((g_info->cmd->full_cmd[x] != '<' && g_info->cmd->full_cmd[x] != '>') && i == 0)
 			i = 1;
-		if (input->full_cmd[x])
+		if (g_info->cmd->full_cmd[x])
 			x++;
 	}
 	return (n);
 }
 
-void	alloc_op_files(t_cmd *input, int x)
+void	alloc_op_files(int x)
 {
 	int	i;
 	int	op_len;
@@ -75,27 +75,26 @@ void	alloc_op_files(t_cmd *input, int x)
 	i = 0;
 	op_len = 0;
 	file_len = 0;
-	while (input->full_op[x][i] && (input->full_op[x][i] == '>' || input->full_op[x][i] == '<'))
+	while (g_info->cmd->full_op[x][i] && (g_info->cmd->full_op[x][i] == '>' || g_info->cmd->full_op[x][i] == '<'))
 	{
 		i++;
 		op_len++;
 	}
-	// printf(" the redir is(%d) \n", op_len);
-	input->redir[x] = malloc(op_len + 1);
-	if (!input->redir[x])
+	g_info->cmd->redir[x] = malloc(op_len + 1);
+	if (!g_info->cmd->redir[x])
 		return ;
 	i++;
-	while (input->full_op[x][i])
+	while (g_info->cmd->full_op[x][i])
 	{
 		i++;
 		file_len++;
 	}
-	input->files[x] = malloc(file_len + 1);
-	if (!input->files[x])
+	g_info->cmd->files[x] = malloc(file_len + 1);
+	if (!g_info->cmd->files[x])
 		return ;
 }
 
-void	copy_op_files(t_cmd *input, int x)
+void	copy_op_files(int x)
 {
 	int	i;
 	int	y;
@@ -105,11 +104,11 @@ void	copy_op_files(t_cmd *input, int x)
 	z = 0;
 	i = 0;
 	
-	while ((input->full_op[x][i] == '>' || input->full_op[x][i] == '<') && input->full_op[x][i])
-		input->redir[x][y++] = input->full_op[x][i++];
-	input->redir[x][y] = 0;
+	while ((g_info->cmd->full_op[x][i] == '>' || g_info->cmd->full_op[x][i] == '<') && g_info->cmd->full_op[x][i])
+		g_info->cmd->redir[x][y++] = g_info->cmd->full_op[x][i++];
+	g_info->cmd->redir[x][y] = 0;
 	i++;
-	while (input->full_op[x][i] != '\0')
-		input->files[x][z++] = input->full_op[x][i++];
-	input->files[x][z] = 0;
+	while (g_info->cmd->full_op[x][i] != '\0')
+		g_info->cmd->files[x][z++] = g_info->cmd->full_op[x][i++];
+	g_info->cmd->files[x][z] = 0;
 }

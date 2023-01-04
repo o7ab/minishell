@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 10:36:22 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:34:57 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ typedef struct s_node
 
 typedef struct s_cmd
 {
-	char			*cmd;
-	char			*arg;
 	char			*flag;
 	char			**files;
 	char			**redir;
@@ -50,40 +48,39 @@ typedef struct s_info
 {
 	int		open_q;
 	char	*line;
-	char	*cmd;
 	char	**env;
 	char	**split;
 	int		n_cmd;
-	t_cmd	*cmd_struct;
+	t_cmd	*cmd;
 }	t_info;
 
 t_info *g_info;
 
 
 void	lst_add(t_cmd **list);
-int		num_cmds(t_info *info);
-void	get_list(t_cmd *input, t_info *info);
+int		num_cmds();
+void	get_list(void);
 int		incrementer(char *s, int i);
 char	**ft_split_q(char *s, char c);
 void	free_double(char **str);
 char	**ft_split_set(char *str, char *charset);
-void	get_redir(t_cmd *input);
-int		check_size_of_op(t_cmd *input, int i);
-int		size_of_op(t_cmd *input, int *i, int j);
-void	skip_oop(t_cmd *input, int *i);
+void	get_redir(void);
+int		check_size_of_op(int i);
+int		size_of_op(int *i, int j);
+void	skip_oop(int *i);
 int		skip_til_op(char *str, int x);
-int		number_of_redir(t_cmd *input);
-void	alloc_op_files(t_cmd *input, int x);
-void	copy_op_files(t_cmd *input, int x);
-void	alloc_redir(t_cmd *input, int n_op);
-int		check_alloc_redir(t_cmd *input, int n_op);
-char	*get_cmd(t_info *g_info);
-void	get_short_cmd(t_cmd *input);
+int		number_of_redir(void);
+void	alloc_op_files(int x);
+void	copy_op_files(int x);
+void	alloc_redir(int n_op);
+int		check_alloc_redir(int n_op);
+char	*get_cmd(void);
+void	get_short_cmd(void);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
 // void    one_pipe(t_cmd **input, t_info **g_info);
 void    one_pipe(void);
 char 	*get_path(void);
-char	*check_env(char *str, t_cmd *input, t_info *g_info);
-
+char	*check_env(char *str);
+char	*check_quotes(char *str);
 #endif
