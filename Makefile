@@ -6,7 +6,7 @@
 #    By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2023/01/04 10:36:08 by dfurneau         ###   ########.fr        #
+#    Updated: 2023/01/06 06:48:44 by dfurneau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,9 @@ CC 			= gcc -g3 -I/usr/local/opt/readline/include
 FLAGS    	:= -Wall -Wextra -Werror -fcommon
 
 SRCS        :=  parser.c \
-				cmd.c \
-				arg.c \
-                    pipes.c\
-                    env.c\
+                pipes.c\
+                env.c\
+                excute_redi.c\
 				parser_utils.c \
 				parser_utils2.c \
 				ft_split_q.c \

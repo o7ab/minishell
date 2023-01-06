@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 13:13:36 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:27:00 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_double(char **str)
 	free (str);
 }
 
-int	num_cmds(t_info *g_info)
+int	num_cmds()
 {
 	int		count;
 	int		i;
