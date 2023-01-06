@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 18:10:13 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/06 21:30:43 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,5 @@ void	one_pipe(void);
 char	*get_path(void);
 char	*check_env(char *str);
 char	*check_quotes(char *str);
-char	*var_error(char *str);
-void	full_copy(int index, int i);
-void	short_help(int i, int m, int n_op);
-void	init_input(void);
-void	free_shell(void);
-
+void    redir(void);
 #endif

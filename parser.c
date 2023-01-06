@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 21:11:11 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/06 21:28:38 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,14 @@ void	init_info(char **env)
 	g_info->open_q = 0;
 }
 
-int	main(int ac, char **av, char **env)
+void	excute()
+{
+	get_path();
+	// one_pipe();
+	redir();	
+}
+
+int main(int ac, char **av, char **env)
 {
 	// t_cmd	*input;
 
@@ -99,18 +106,18 @@ int	main(int ac, char **av, char **env)
 	g_info = ft_calloc(1, sizeof(t_info));
 	// input = ft_calloc(1, sizeof(t_cmd));
 	init_info(env);
-	// g_info->cmd = input;
-	// while (1)
-	// {
-	printf("%s", PURPLE);
-	g_info->line = readline("minishell> \033[0m");
-	if (g_info->line == NULL)
-		return (0);
-	if (g_info->line[0] == 0)
-		return (0);
-	add_history(g_info->line);
-	parse_line();
-	free_shell();
-	// }
-	return (0);
+	g_info->cmd = input;
+	while (1)
+	{
+		printf("%s", PURPLE);
+		g_info->line = readline("minishell> \033[0m");
+		if (g_info->line == NULL)
+			return 0;
+		if (g_info->line[0] == 0)
+			continue;
+		add_history(g_info->line);
+		parse_line();
+		excute();
+	}
+	return 0;
 }
