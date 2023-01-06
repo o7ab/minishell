@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 18:45:33 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/06 21:11:11 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,21 @@ void	parse_cmds(void)
 	}
 	g_info->cmd = tmp;
 	i = 0;
-	// while (g_info->cmd)
-	// {
-	// 	while (g_info->cmd && g_info->cmd->redir[i] && g_info->cmd->files[i])
-	// 	{
-	// 		printf("the redir is (%s) and the file is (%s)\n", g_info->cmd->redir[i], g_info->cmd->files[i]);
-	// 		i++;
-	// 	}
-	// 	i = 0;
-	// 	g_info->cmd = g_info->cmd->next;
-	// }
-	// g_info->cmd = tmp;
+	while (g_info->cmd)
+	{
+		while (g_info->cmd && g_info->cmd->s_cmd[i])
+		{
+			printf("the scmd is (%s)\n", g_info->cmd->s_cmd[i]);
+			i++;
+		}
+		i = 0;
+		g_info->cmd = g_info->cmd->next;
+	}
+	g_info->cmd = tmp;
 }
 
 void	get_list(void)
 {
-	int	i;
-
-	i = 0;
 	if (!g_info->cmd)
 		return ;
 	if (!get_redir())
@@ -59,13 +56,13 @@ void	get_list(void)
 	free(g_info->cmd->full_cmd);
 	g_info->cmd->s_cmd = ft_split_q(g_info->cmd->new_cmd, ' ');
 	free(g_info->cmd->new_cmd);
-	while (g_info->cmd->s_cmd[i])
-	{
-		g_info->cmd->s_cmd[i] = check_env(g_info->cmd->s_cmd[i]);
-		g_info->cmd->s_cmd[i] = check_quotes(g_info->cmd->s_cmd[i]);
-		printf("\n\n\nthe s_cmd is (%s)\n\n\n", g_info->cmd->s_cmd[i]);
-		i++;
-	}
+	// while (g_info->cmd->s_cmd[i])
+	// {
+	// 	g_info->cmd->s_cmd[i] = check_env(g_info->cmd->s_cmd[i]);
+	// 	g_info->cmd->s_cmd[i] = check_quotes(g_info->cmd->s_cmd[i]);
+	// 	printf("\n\n\nthe s_cmd is (%s)\n\n\n", g_info->cmd->s_cmd[i]);
+	// 	i++;
+	// }
 }
 
 void	parse_line(void)
