@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 21:28:38 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/06 21:57:18 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int main(int ac, char **av, char **env)
 	g_info = ft_calloc(1, sizeof(t_info));
 	// input = ft_calloc(1, sizeof(t_cmd));
 	init_info(env);
-	g_info->cmd = input;
 	while (1)
 	{
 		printf("%s", PURPLE);
