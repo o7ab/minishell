@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 20:03:51 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:10:13 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@
 
 # define RESET "\033[0m"
 # define PURPLE "\e[1;95m"
-
-typedef struct s_node
-{
-	int				type;
-	char			*str;
-	struct s_node	*next;
-}	t_node;
 
 typedef struct s_cmd
 {

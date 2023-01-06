@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 21:32:50 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 20:41:49 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:56:17 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,15 @@ int	check_if_var(char *var, int i)
 char	*copy_env(char *var, char *tmp, int i)
 {
 	char	*tmp2;
-	char	*after;
+	char	*test;
 
 	tmp2 = (NULL);
-	after = (NULL);
-	after = ft_strdup(tmp);
+	test = (NULL);
 	tmp2 = ft_substr(g_info->env[i], ft_strlen(var),
 			ft_strlen(g_info->env[i]) - ft_strlen(var));
+	test = ft_strjoin(tmp2, tmp);
 	free (tmp);
-	tmp = ft_strjoin(tmp2, after);
-	free (after);
-	return (tmp);
+	return (test);
 }
 
 char	*get_env(char *str)
@@ -64,13 +62,13 @@ char	*get_env(char *str)
 	{
 		if (ft_strncmp(var, g_info->env[i], ft_strlen(var)) == 0)
 		{
-			copy_env(var, tmp, i);
+			tmp = copy_env(var, tmp, i);
 			break ;
 		}
 		i++;
 	}
-	if (!g_info->env[i])
-		free (tmp);
+	// if (!g_info->env[i])
+	// 	free (tmp);
 	free(var);
 	return (tmp);
 }
