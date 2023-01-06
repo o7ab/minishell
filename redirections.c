@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 21:24:36 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 17:13:10 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:26:57 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,29 @@
 
 void	copy_op(int i, int x)
 {
-	int	j;
-	char c;
+	int		j;
+	char	c;
 
 	j = 0;
 	c = 0;
-	while (g_info->cmd->full_cmd[i] && (g_info->cmd->full_cmd[i] == '>' || g_info->cmd->full_cmd[i] == '<'))
+	while (g_info->cmd->full_cmd[i] && (g_info->cmd->full_cmd[i] == '>'
+			|| g_info->cmd->full_cmd[i] == '<'))
 		g_info->cmd->full_op[x][j++] = g_info->cmd->full_cmd[i++];
 	while (ft_isspace(g_info->cmd->full_cmd[i]) && g_info->cmd->full_cmd[i])
 		i++;
 	g_info->cmd->full_op[x][j++] = ' ';
-	while (!ft_isspace(g_info->cmd->full_cmd[i]) && g_info->cmd->full_cmd[i] != '>' 
-		&& g_info->cmd->full_cmd[i] != '<' && g_info->cmd->full_cmd[i])
+	while (!ft_isspace(g_info->cmd->full_cmd[i])
+		&& g_info->cmd->full_cmd[i] != '>' && g_info->cmd->full_cmd[i] != '<'
+		&& g_info->cmd->full_cmd[i])
 	{
 		if (g_info->cmd->full_cmd[i] == 39 || g_info->cmd->full_cmd[i] == 34)
 		{
 			c = g_info->cmd->full_cmd[i++];
-			while(g_info->cmd->full_cmd[i] != c && g_info->cmd->full_cmd[i])
+			while (g_info->cmd->full_cmd[i] != c && g_info->cmd->full_cmd[i])
 				g_info->cmd->full_op[x][j++] = g_info->cmd->full_cmd[i++];
 		}
-		else
-			g_info->cmd->full_op[x][j++] = g_info->cmd->full_cmd[i++];	
+		else if (g_info->cmd->full_cmd[i])
+			g_info->cmd->full_op[x][j++] = g_info->cmd->full_cmd[i++];
 	}
 	g_info->cmd->full_op[x][j] = 0;
 }
@@ -106,7 +108,7 @@ void	get_op_files(int n_op)
 	}
 }
 
-void	get_redir()
+int	get_redir(void)
 {
 	int	x;
 	int	n_op;
@@ -118,12 +120,13 @@ void	get_redir()
 		g_info->cmd->full_op = NULL;
 		g_info->cmd->files = NULL;
 		g_info->cmd->redir = NULL;
-		return;
+		return (0);
 	}
 	if (!check_copy_redir(n_op))
-		return;
+		return (0);
 	get_op_files(n_op);
 	while (x < n_op)
 		free (g_info->cmd->full_op[x++]);
 	free(g_info->cmd->full_op);
+	return (1);
 }

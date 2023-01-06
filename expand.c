@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 21:32:50 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 01:42:33 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:41:49 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_if_var(char *var, int i)
 	while (var[i] != '\0')
 	{
 		if (ft_isalnum(var[i]) == 0 && var[i] != '_')
-			break;
+			break ;
 		i++;
 	}
 	if (!ft_isalnum(var[i]) && var[i] != '_')
@@ -29,24 +29,20 @@ int	check_if_var(char *var, int i)
 	return (0);
 }
 
-char	*var_error(char *str)
+char	*copy_env(char *var, char *tmp, int i)
 {
-	int		i;
+	char	*tmp2;
+	char	*after;
 
-	i = 0;
-	if (str[i] == '?')
-		return (ft_strdup(ft_strjoin(ft_strdup("$"), str)));
-	if (ft_isdigit(str[i]) == 1 || (!ft_isalnum(str[i]) && str[i] != '_' && str[i]))
-		return (ft_substr(str, 1, ft_strlen(str)));
-	if (str[i] == '_')
-		return (ft_strdup(""));
-	while (str[i] != '\0' && ft_isalnum(str[i]) == 1 && str[i] != '_')
-		i++;
-	if (str[i] != 0 && i == 0 && (str[i] == 34 || str[i] == 39))
-		return (str);
-	if (str[i] != '\0' && ft_isalnum(str[i]) == 0 && str[i] != '_')
-		return (ft_substr(str, i, ft_strlen(str) - i));
-	return (ft_strdup(""));
+	tmp2 = (NULL);
+	after = (NULL);
+	after = ft_strdup(tmp);
+	tmp2 = ft_substr(g_info->env[i], ft_strlen(var),
+			ft_strlen(g_info->env[i]) - ft_strlen(var));
+	free (tmp);
+	tmp = ft_strjoin(tmp2, after);
+	free (after);
+	return (tmp);
 }
 
 char	*get_env(char *str)
@@ -54,27 +50,27 @@ char	*get_env(char *str)
 	int		i;
 	char	*var;
 	char	*tmp;
-	char	*tmp2;
 
 	i = 0;
-	tmp2 = NULL;
 	i = check_if_var(str, i);
 	if (!i)
 		return (var_error(str));
 	tmp = ft_substr(str, i, ft_strlen(str) - i);
 	var = ft_substr(str, 0, i + 1);
+	free (str);
 	var[i] = '=';
 	i = 0;
 	while (g_info->env[i])
 	{
 		if (ft_strncmp(var, g_info->env[i], ft_strlen(var)) == 0)
 		{
-			tmp2 = ft_substr(g_info->env[i], ft_strlen(var), ft_strlen(g_info->env[i]) - ft_strlen(var));
-			tmp = ft_strjoin(tmp2, tmp);
+			copy_env(var, tmp, i);
 			break ;
 		}
 		i++;
 	}
+	if (!g_info->env[i])
+		free (tmp);
 	free(var);
 	return (tmp);
 }
