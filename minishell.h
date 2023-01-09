@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 18:10:13 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/06 22:00:09 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ void	copy_op_files(int x);
 void	alloc_redir(int n_op);
 int		check_alloc_redir(int n_op);
 void	get_short_cmd(void);
+void	short_help(int i, int m, int n_op);
+char	*var_error(char *str);
+void	init_input(void);
+void	full_copy(int index, int i);
 void	copy_short_cmd(int m, int n_op);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
@@ -74,10 +78,5 @@ void	one_pipe(void);
 char	*get_path(void);
 char	*check_env(char *str);
 char	*check_quotes(char *str);
-char	*var_error(char *str);
-void	full_copy(int index, int i);
-void	short_help(int i, int m, int n_op);
-void	init_input(void);
-void	free_shell(void);
-
+void    redir(void);
 #endif
