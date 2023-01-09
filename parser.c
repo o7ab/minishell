@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 18:45:33 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:01:13 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	get_list(void)
 	{
 		g_info->cmd->s_cmd[i] = check_env(g_info->cmd->s_cmd[i]);
 		g_info->cmd->s_cmd[i] = check_quotes(g_info->cmd->s_cmd[i]);
-		printf("\n\n\nthe s_cmd is (%s)\n\n\n", g_info->cmd->s_cmd[i]);
+		// printf("\n\n\nthe s_cmd is (%s)\n\n\n", g_info->cmd->s_cmd[i]);
 		i++;
 	}
 }
