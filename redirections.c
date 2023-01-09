@@ -78,7 +78,7 @@ int	check_copy_redir(int n_op)
 		g_info->cmd->full_op = NULL;
 		g_info->cmd->files = NULL;
 		g_info->cmd->redir = NULL;
-		return (0);
+		return (1);
 	}
 	i = 0;
 	while (x < n_op)
