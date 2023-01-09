@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oabushar <oabushar@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
 /*   Updated: 2023/01/09 15:37:45 by oabushar         ###   ########.fr       */
