@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 13:15:47 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:25:14 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void get_list()
 		i++;
 	}
 	// free_double(g_info->cmd->s_cmd);
-	free_double(g_info->cmd->files);
-	free_double(g_info->cmd->redir);
+	// free_double(g_info->cmd->files);
+	// free_double(g_info->cmd->redir);
 }
 
 void parse_line()
@@ -93,12 +93,32 @@ void init_info(char **env)
 	g_info->n_cmd = 0;
 	g_info->open_q = 0;
 }
+void	test()
+{
+	int i;
 
+	i = 0;
+	while (g_info->cmd)
+	{
+		i = 0;
+		while (g_info->cmd->s_cmd[i])
+		{
+			printf("%s\n",g_info->cmd->s_cmd[i]);
+			i++;
+		}
+		g_info->cmd = g_info->cmd->next;
+	}
+	
+}
 void	excute()
 {
 	get_path();
 	// one_pipe();
-	redir();	
+	// redir();
+	// ft_echo();
+	// ft_cd();
+	// ft_pwd();
+	test();
 }
 
 int main(int ac, char **av, char **env)

@@ -6,7 +6,7 @@
 /*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 06:45:44 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:51:12 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <fcntl.h>
 #include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -84,4 +85,8 @@ char 	*get_path(void);
 char	*check_env(char *str);
 char	*check_quotes(char *str);
 void    redir(void);
+void    ft_echo();
+void    ft_pwd();
+void    ft_cd();
+char  *put_cmd_in_path(char *cmd, char *path);
 #endif
