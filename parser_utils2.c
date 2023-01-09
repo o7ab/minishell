@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 01:29:51 by oabushar          #+#    #+#             */
-/*   Updated: 2022/12/28 22:19:46 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:03:17 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,16 @@ char	**alloc_env(char **env)
 	}
 	new_env[j] = NULL;
 	return (new_env);
+}
+
+void	init_input(void)
+{
+	g_info->n_cmd = num_cmds();
+	g_info->cmd->flag = NULL;
+	g_info->cmd->files = NULL;
+	g_info->cmd->redir = NULL;
+	g_info->cmd->full_cmd = NULL;
+	g_info->cmd->full_op = NULL;
+	g_info->cmd->s_cmd = NULL;
+	g_info->cmd->new_cmd = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:49:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 17:13:22 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:47:07 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	skip_oop(int *i)
 	int	j;
 
 	j = 0;
-	while (g_info->cmd->full_cmd[*i] && (g_info->cmd->full_cmd[*i] == '>' || g_info->cmd->full_cmd[*i] == '<') && j < 2)
+	while (g_info->cmd->full_cmd[*i] && (g_info->cmd->full_cmd[*i] == '>'
+			|| g_info->cmd->full_cmd[*i] == '<') && j < 2)
 	{
 		(*i)++;
 		j++;
@@ -30,9 +31,10 @@ void	skip_oop(int *i)
 
 int	error_for_size_op(int i)
 {
-	if (g_info->cmd->full_cmd[i] == '<' || g_info->cmd->full_cmd[i] == '>' || !g_info->cmd->full_cmd[i])
+	if (g_info->cmd->full_cmd[i] == '<' || g_info->cmd->full_cmd[i] == '>'
+		|| !g_info->cmd->full_cmd[i])
 	{
-		printf("bash: unexpected token `%c'\n", g_info->cmd->full_cmd[i]);
+		printf("bash: unexpecteddddd token `%c'\n", g_info->cmd->full_cmd[i]);
 		rl_on_new_line();
 		return (0);
 	}
@@ -42,7 +44,10 @@ int	error_for_size_op(int i)
 int	size_of_op(int *i, int j)
 {
 	char	tmp;
-	while (g_info->cmd->full_cmd[*i] && g_info->cmd->full_cmd[*i] != '>' && g_info->cmd->full_cmd[*i] != '<' && !ft_isspace(g_info->cmd->full_cmd[*i]))
+
+	while (g_info->cmd->full_cmd[*i] && g_info->cmd->full_cmd[*i] != '>'
+		&& g_info->cmd->full_cmd[*i] != '<'
+		&& !ft_isspace(g_info->cmd->full_cmd[*i]))
 	{
 		if (!error_for_size_op(*i))
 			return (0);
@@ -50,7 +55,8 @@ int	size_of_op(int *i, int j)
 		{
 			tmp = g_info->cmd->full_cmd[(*i)++];
 			j++;
-			while (g_info->cmd->full_cmd[*i] && g_info->cmd->full_cmd[*i] != tmp)
+			while (g_info->cmd->full_cmd[*i]
+				&& g_info->cmd->full_cmd[*i] != tmp)
 			{
 				(*i)++;
 				j++;
@@ -67,11 +73,14 @@ int	check_size_of_op(int i)
 	int	j;
 
 	j = 0;
-	while (g_info->cmd->full_cmd[i] && (g_info->cmd->full_cmd[i] == '>' || g_info->cmd->full_cmd[i] == '<') && j < 2)
+	while (g_info->cmd->full_cmd[i] && (g_info->cmd->full_cmd[i] == '>'
+			|| g_info->cmd->full_cmd[i] == '<') && j < 2)
 	{
-		if ((g_info->cmd->full_cmd[i] == '>' && g_info->cmd->full_cmd[i + 1] == '<'))
+		if ((g_info->cmd->full_cmd[i] == '>'
+				&& g_info->cmd->full_cmd[i + 1] == '<'))
 		{
-			printf("bash: unexpected token `%c'\n", g_info->cmd->full_cmd[i + 1]);
+			printf("bash: unexpected token `%c'\n",
+				g_info->cmd->full_cmd[i + 1]);
 			rl_on_new_line();
 			return (0);
 		}
@@ -82,7 +91,7 @@ int	check_size_of_op(int i)
 	while (g_info->cmd->full_cmd[i] && ft_isspace(g_info->cmd->full_cmd[i]))
 		i++;
 	if (!error_for_size_op(i))
-		return (0); 
+		return (0);
 	j = size_of_op(&i, j);
 	return (j);
 }

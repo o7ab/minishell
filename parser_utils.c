@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 13:27:00 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/06 21:30:55 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	free_double(char **str)
 
 	i = 0;
 	if (!str)
-		return;
+		return ;
 	while (str[i])
 		free(str[i++]);
 	free (str);
 }
 
-int	num_cmds()
+int	num_cmds(void)
 {
 	int		count;
 	int		i;
@@ -82,4 +82,27 @@ void	lst_add(t_cmd **list)
 			ptr = ptr->next;
 		ptr->next = new;
 	}
+}
+
+void	free_shell(void)
+{
+	t_cmd	*ptr;
+
+	if (g_info->env)
+		free_double(g_info->env);
+	if (g_info->split)
+		free_double(g_info->split);
+	while (g_info->cmd)
+	{	
+		if (g_info->cmd->s_cmd)
+			free_double(g_info->cmd->s_cmd);
+		if (g_info->cmd->files)
+			free_double(g_info->cmd->files);
+		if (g_info->cmd->redir)
+			free_double(g_info->cmd->redir);
+		ptr = g_info->cmd->next;
+		free (g_info->cmd);
+		g_info->cmd = ptr;
+	}
+	free (g_info);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 20:04:13 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/03 20:10:26 by dfurneau         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:48:08 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		is_separator(char c, char *charset)
+int	is_separator(char c, char *charset)
 {
 	int	i;
 
@@ -26,12 +26,12 @@ int		is_separator(char c, char *charset)
 	return (0);
 }
 
-int		is_word(char c, char cbefore, char *charset)
+int	is_word(char c, char cbefore, char *charset)
 {
 	return (!is_separator(c, charset) && is_separator(cbefore, charset));
 }
 
-int		get_words_count(char *str, char *charset)
+int	get_words_count(char *str, char *charset)
 {
 	int	words_count;
 	int	i;
@@ -40,15 +40,15 @@ int		get_words_count(char *str, char *charset)
 	words_count = 0;
 	while (str[i] != '\0')
 	{
-		if (is_word(str[i], str[i - 1], charset) ||
-			(!is_separator(str[i], charset) && i == 0))
+		if (is_word(str[i], str[i - 1], charset)
+			|| (!is_separator(str[i], charset) && i == 0))
 			words_count++;
 		i++;
 	}
 	return (words_count);
 }
 
-int		*get_words_size(char *str, char *charset)
+int	*get_words_size(char *str, char *charset)
 {
 	int	index;
 	int	i;
@@ -84,7 +84,7 @@ char	**ft_split_set(char *str, char *charset)
 	int		index;
 	int		*words_size;
 
-	words = malloc((get_words_count(str, charset) + 1) * sizeof(char*));
+	words = malloc ((get_words_count(str, charset) + 1) * sizeof(char *));
 	words_size = get_words_size(str, charset);
 	index = 0;
 	j = 0;

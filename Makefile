@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+         #
+#    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2023/01/06 06:48:44 by dfurneau         ###   ########.fr        #
+#    Updated: 2023/01/06 21:27:53 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SRCS        :=  parser.c \
 				redirections_utils.c \
 				redirections_utils2.c \
 				short_cmd.c \
+				short_cmd_utils.c \
 				expand.c \
+				expand_utils.c \
 				quotes.c \
 				ft_split_char.c \
 				libft/ft_atoi.c \

@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:05:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/02 13:11:11 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:06:59 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_quotes(char *str, int m)
 			while (str[i] != c && str[i])
 				ret[j++] = str[i++];
 		}
-		if (str[i] && str[i] != 34  && str[i] != 39)
+		if (str[i] && str[i] != 34 && str[i] != 39)
 			ret[j++] = str[i];
 		i++;
 	}

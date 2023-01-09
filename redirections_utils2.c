@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:44:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 15:27:57 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:54:25 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ void	alloc_redir(int n_op)
 {
 	g_info->cmd->full_op = malloc((n_op + 1) * sizeof(char *));
 	g_info->cmd->files = malloc((n_op + 1) * sizeof(char *));
-	g_info->cmd->redir = malloc((n_op + 1)* sizeof(char *));
+	g_info->cmd->redir = malloc((n_op + 1) * sizeof(char *));
 	g_info->cmd->full_op[n_op] = 0;
 	g_info->cmd->redir[n_op] = 0;
 	g_info->cmd->files[n_op] = 0;
 }
-int	number_of_redir()
+
+int	number_of_redir(void)
 {
 	int		n;
 	int		x;
@@ -53,12 +54,14 @@ int	number_of_redir()
 	while (g_info->cmd->full_cmd[x])
 	{
 		x = incrementer(g_info->cmd->full_cmd, x);
-		if ((g_info->cmd->full_cmd[x] == '<' || g_info->cmd->full_cmd[x] == '>') && i)
+		if ((g_info->cmd->full_cmd[x] == '<'
+				|| g_info->cmd->full_cmd[x] == '>') && i)
 		{
 			i = 0;
 			n++;
 		}
-		else if ((g_info->cmd->full_cmd[x] != '<' && g_info->cmd->full_cmd[x] != '>') && i == 0)
+		else if ((g_info->cmd->full_cmd[x] != '<'
+				&& g_info->cmd->full_cmd[x] != '>') && i == 0)
 			i = 1;
 		if (g_info->cmd->full_cmd[x])
 			x++;
@@ -75,7 +78,8 @@ void	alloc_op_files(int x)
 	i = 0;
 	op_len = 0;
 	file_len = 0;
-	while (g_info->cmd->full_op[x][i] && (g_info->cmd->full_op[x][i] == '>' || g_info->cmd->full_op[x][i] == '<'))
+	while (g_info->cmd->full_op[x][i] && (g_info->cmd->full_op[x][i] == '>'
+			|| g_info->cmd->full_op[x][i] == '<'))
 	{
 		i++;
 		op_len++;
@@ -103,8 +107,8 @@ void	copy_op_files(int x)
 	y = 0;
 	z = 0;
 	i = 0;
-	
-	while ((g_info->cmd->full_op[x][i] == '>' || g_info->cmd->full_op[x][i] == '<') && g_info->cmd->full_op[x][i])
+	while ((g_info->cmd->full_op[x][i] == '>'
+		|| g_info->cmd->full_op[x][i] == '<') && g_info->cmd->full_op[x][i])
 		g_info->cmd->redir[x][y++] = g_info->cmd->full_op[x][i++];
 	g_info->cmd->redir[x][y] = 0;
 	i++;
