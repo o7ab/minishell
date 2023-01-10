@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/09 15:37:45 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:00:16 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	parse_cmds(void)
 	{
 		while (g_info->cmd && g_info->cmd->s_cmd[i])
 		{
-			printf("the scmd is (%s)\n", g_info->cmd->s_cmd[i]);
+			printf("the omar s_cmd is (%s)\n", g_info->cmd->s_cmd[i]);
 			i++;
 		}
 		i = 0;
@@ -43,8 +43,9 @@ void	parse_cmds(void)
 
 void	get_list(void)
 {
-	if (!g_info->cmd)
-		return ;
+	int	i;
+
+	i = 0;
 	if (!get_redir())
 	{
 		free(g_info->cmd->full_cmd);
@@ -56,13 +57,13 @@ void	get_list(void)
 	free(g_info->cmd->full_cmd);
 	g_info->cmd->s_cmd = ft_split_q(g_info->cmd->new_cmd, ' ');
 	free(g_info->cmd->new_cmd);
-	// while (g_info->cmd->s_cmd[i])
-	// {
-	// 	g_info->cmd->s_cmd[i] = check_env(g_info->cmd->s_cmd[i]);
-	// 	g_info->cmd->s_cmd[i] = check_quotes(g_info->cmd->s_cmd[i]);
-	// 	printf("\n\n\nthe s_cmd is (%s)\n\n\n", g_info->cmd->s_cmd[i]);
-	// 	i++;
-	// }
+	while (g_info->cmd->s_cmd[i])
+	{
+		g_info->cmd->s_cmd[i] = check_env(g_info->cmd->s_cmd[i]);
+		g_info->cmd->s_cmd[i] = check_quotes(g_info->cmd->s_cmd[i]);
+		// printf("\nthe s_cmd is (%s)\n\n\n", g_info->cmd->s_cmd[i]);
+		i++;
+	}
 }
 
 void	parse_line(void)
@@ -106,17 +107,15 @@ int main(int ac, char **av, char **env)
 	g_info = ft_calloc(1, sizeof(t_info));
 	// input = ft_calloc(1, sizeof(t_cmd));
 	init_info(env);
-	while (1)
-	{
-		printf("%s", PURPLE);
-		g_info->line = readline("minishell> \033[0m");
-		if (g_info->line == NULL)
-			return 0;
-		if (g_info->line[0] == 0)
-			continue;
-		add_history(g_info->line);
-		parse_line();
-		excute();
-	}
+	printf("%s", PURPLE);
+	g_info->line = readline("minishell> \033[0m");
+	if (g_info->line == NULL)
+		return (0);
+	if (g_info->line[0] == 0)
+		return (0);
+	add_history(g_info->line);
+	parse_line();
+		// excute();
+	free_shell();
 	return 0;
 }

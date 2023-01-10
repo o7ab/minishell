@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 22:00:09 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:55:18 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,6 @@ char	*get_path(void);
 char	*check_env(char *str);
 char	*check_quotes(char *str);
 void    redir(void);
+void	free_shell(void);
+
 #endif
