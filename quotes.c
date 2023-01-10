@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:05:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 15:06:59 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/09 23:23:14 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*get_quotes(char *str, int m)
 			ret[j++] = str[i];
 		i++;
 	}
+	free (str);
 	ret[j] = '\0';
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 21:24:36 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 20:26:57 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:59:39 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	get_redir(void)
 		g_info->cmd->full_op = NULL;
 		g_info->cmd->files = NULL;
 		g_info->cmd->redir = NULL;
-		return (0);
+		return (1);
 	}
 	if (!check_copy_redir(n_op))
 		return (0);
