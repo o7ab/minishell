@@ -6,7 +6,7 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2023/01/06 21:27:53 by oabushar         ###   ########.fr        #
+#    Updated: 2023/01/11 16:33:54 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,68 +14,67 @@ NAME        := minishell
 CC 			= gcc -g3 -I/usr/local/opt/readline/include
 FLAGS    	:= -Wall -Wextra -Werror -fcommon
 
-SRCS        :=  parser.c \
-                pipes.c\
-                env.c\
-                excute_redi.c\
-				parser_utils.c \
-				parser_utils2.c \
-				ft_split_q.c \
-				redirections.c \
-				redirections_utils.c \
-				redirections_utils2.c \
-				short_cmd.c \
-				short_cmd_utils.c \
-				expand.c \
-				expand_utils.c \
-				quotes.c \
-				ft_split_char.c \
-				libft/ft_atoi.c \
-                    libft/ft_bzero.c \
-                     libft/ft_calloc.c \
-                     libft/ft_isalnum.c \
-                     libft/ft_isalpha.c \
-                     libft/ft_isascii.c \
-                     libft/ft_isdigit.c \
-                     libft/ft_isspace.c \
-                     libft/ft_isprint.c \
-                     libft/ft_itoa.c \
-                     libft/ft_lstadd_back.c \
-                     libft/ft_lstadd_front.c \
-                     libft/ft_lstclear.c \
-                     libft/ft_lstdelone.c \
-                     libft/ft_lstiter.c \
-                     libft/ft_lstlast.c \
-                     libft/ft_lstmap.c \
-                     libft/ft_lstnew.c \
-                     libft/ft_lstsize.c \
-                     libft/ft_memchr.c \
-                     libft/ft_memcmp.c \
-                     libft/ft_memcpy.c \
-                     libft/ft_memmove.c \
-                     libft/ft_memset.c \
-                     libft/ft_putchar_fd.c \
-                     libft/ft_putendl_fd.c \
-                     libft/ft_putnbr_fd.c \
-                     libft/ft_putstr_fd.c \
-                     libft/ft_split.c \
-                     libft/ft_strchr.c \
-                     libft/ft_strdup.c \
-                     libft/ft_striteri.c \
-                     libft/ft_strjoin.c \
-                     libft/ft_strlcat.c \
-                     libft/ft_strlcpy.c \
-                     libft/ft_strlen.c \
-                     libft/ft_strmapi.c \
-                     libft/ft_strncmp.c \
-                     libft/ft_strnstr.c \
-                     libft/ft_strrchr.c \
-                     libft/ft_strtrim.c \
-                     libft/ft_substr.c \
-                     libft/ft_tolower.c \
-                     libft/ft_toupper.c \
-                     
-                          
+SRCS        :=  ./parsing/parser.c \
+				./parsing/parser_utils.c \
+				./parsing/parser_utils2.c \
+				./parsing/ft_split_q.c \
+				./parsing/redirections.c \
+				./parsing/redirections_utils.c \
+				./parsing/redirections_utils2.c \
+				./parsing/short_cmd.c \
+				./parsing/short_cmd_utils.c \
+				./parsing/expand.c \
+				./parsing/expand_utils.c \
+				./parsing/quotes.c \
+				./execution/pipes.c\
+                ./execution/env.c\
+                ./execution/excute_redi.c\
+				./execution/ft_split_char.c \
+					./includes/libft/ft_atoi.c \
+                    ./includes/libft/ft_bzero.c \
+                    ./includes/libft/ft_calloc.c \
+                    ./includes/libft/ft_isalnum.c \
+                    ./includes/libft/ft_isalpha.c \
+                    ./includes/libft/ft_isascii.c \
+                    ./includes/libft/ft_isdigit.c \
+                    ./includes/libft/ft_isspace.c \
+                    ./includes/libft/ft_isprint.c \
+                    ./includes/libft/ft_itoa.c \
+                    ./includes/libft/ft_lstadd_back.c \
+                    ./includes/libft/ft_lstadd_front.c \
+                    ./includes/libft/ft_lstclear.c \
+                    ./includes/libft/ft_lstdelone.c \
+                    ./includes/libft/ft_lstiter.c \
+                    ./includes/libft/ft_lstlast.c \
+                    ./includes/libft/ft_lstmap.c \
+                    ./includes/libft/ft_lstnew.c \
+                    ./includes/libft/ft_lstsize.c \
+                    ./includes/libft/ft_memchr.c \
+                    ./includes/libft/ft_memcmp.c \
+                    ./includes/libft/ft_memcpy.c \
+                    ./includes/libft/ft_memmove.c \
+                    ./includes/libft/ft_memset.c \
+                    ./includes/libft/ft_putchar_fd.c \
+                    ./includes/libft/ft_putendl_fd.c \
+                    ./includes/libft/ft_putnbr_fd.c \
+                    ./includes/libft/ft_putstr_fd.c \
+                    ./includes/libft/ft_split.c \
+                    ./includes/libft/ft_strchr.c \
+                    ./includes/libft/ft_strdup.c \
+                    ./includes/libft/ft_striteri.c \
+                    ./includes/libft/ft_strjoin.c \
+                    ./includes/libft/ft_strlcat.c \
+                    ./includes/libft/ft_strlcpy.c \
+                    ./includes/libft/ft_strlen.c \
+                    ./includes/libft/ft_strmapi.c \
+                    ./includes/libft/ft_strncmp.c \
+                    ./includes/libft/ft_strnstr.c \
+                    ./includes/libft/ft_strrchr.c \
+                    ./includes/libft/ft_strtrim.c \
+                    ./includes/libft/ft_substr.c \
+                    ./includes/libft/ft_tolower.c \
+                    ./includes/libft/ft_toupper.c \
+                         
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:

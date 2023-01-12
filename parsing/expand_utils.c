@@ -6,11 +6,11 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:24:17 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 14:40:25 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:32:54 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 char	*var_error_help(char *str, int i)
 {

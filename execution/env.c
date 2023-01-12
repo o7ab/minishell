@@ -1,5 +1,5 @@
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 char    *remove_equal(char *str)
 {

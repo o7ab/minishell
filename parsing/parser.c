@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	parse_cmds(void)
 {
@@ -28,14 +28,23 @@ void	parse_cmds(void)
 	}
 	g_info->cmd = tmp;
 	i = 0;
-	while (g_info->cmd)
+	while (g_info->cmd && g_info->cmd->s_cmd)
 	{
 		while (g_info->cmd && g_info->cmd->s_cmd[i])
 		{
-			printf("the omar s_cmd is (%s)\n", g_info->cmd->s_cmd[i]);
+			printf("the s_cmd is (%s)\n", g_info->cmd->s_cmd[i]);
 			i++;
 		}
 		i = 0;
+		if (g_info->cmd->redir)
+		{
+			while (g_info->cmd && g_info->cmd->redir[i])
+			{
+				printf("the redir is (%s) and files is (%s)\n", g_info->cmd->redir[i], g_info->cmd->files[i]);
+				i++;
+			}
+			i = 0;
+		}
 		g_info->cmd = g_info->cmd->next;
 	}
 	g_info->cmd = tmp;
@@ -61,7 +70,6 @@ void	get_list(void)
 	{
 		g_info->cmd->s_cmd[i] = check_env(g_info->cmd->s_cmd[i]);
 		g_info->cmd->s_cmd[i] = check_quotes(g_info->cmd->s_cmd[i]);
-		// printf("\nthe s_cmd is (%s)\n\n\n", g_info->cmd->s_cmd[i]);
 		i++;
 	}
 }
@@ -105,7 +113,8 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	g_info = ft_calloc(1, sizeof(t_info));
-	// input = ft_calloc(1, sizeof(t_cmd));
+	// while (1)
+	// {
 	init_info(env);
 	printf("%s", PURPLE);
 	g_info->line = readline("minishell> \033[0m");
@@ -117,5 +126,7 @@ int main(int ac, char **av, char **env)
 	parse_line();
 		// excute();
 	free_shell();
-	return 0;
+	// }
+	free (g_info);
+	return (0);
 }
