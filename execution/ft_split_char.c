@@ -6,11 +6,11 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 20:04:13 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 14:48:08 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:33:42 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int	is_separator(char c, char *charset)
 {
