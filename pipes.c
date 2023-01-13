@@ -47,57 +47,64 @@ void    one_pipe()
   int i;
   char *path;
   int pid;
-  int fd[2];
+  int **fd;
+  int j;
 
   i = 0;
+  j = 0;
   pid = 0;
-  path = get_path();
-  if (pipe(fd) < 0)
+  fd = malloc((g_info->n_cmd - 1) * sizeof(int *));
+  while (j < g_info->n_cmd - 1)
   {
-    write(2, "Error IN Pipe\n",14);
+    fd[j] = malloc(2 * sizeof(int));
+    j++;
   }
+  
+  while (i < g_info->n_cmd - 1)
+  {
+    if (pipe(fd[i]) < 0)
+    {
+      write(1,"Error in the pipes\n",50);
+      exit(1);
+    }
+    i++;
+  }
+  i = 0;
+  path = get_path();
   while (i < g_info->n_cmd)
   {
-    if (g_info->cmd->s_cmd[0] && put_cmd_in_path(g_info->cmd->s_cmd[0], path) != NULL)
+    pid = fork();
+    if (pid == 0)
     {
-      pid = fork();
-      if (pid == 0)
+      if (i != 0)
       {
-        if ( i == 0 )
-        {
-          dup2(fd[1], STDOUT_FILENO);
-          close(fd[1]);
-          close(fd[0]);
-        }
-        else if ( i == 1 )
-        {
-          dup2(fd[0], STDIN_FILENO);
-          close(fd[0]);
-          close(fd[1]);
-        }
-        if(execve(put_cmd_in_path(g_info->cmd->s_cmd[0], path), g_info->cmd->s_cmd, NULL) < 0)
-        {
-          write(2, "ERROR IN excv1()\n", 17);
-          exit(1);
-        }
+        dup2(fd[i-1][0],STDIN_FILENO);
+        close(fd[i-1][0]);
       }
-      else if (pid > 0)
+      if (i + 1 < g_info->n_cmd)
       {
-          if( i == 0)
-              close(fd[1]);
-          if( i == 1)
-              close(fd[0]);
+        dup2(fd[i][1],STDOUT_FILENO);
+        close(fd[i][1]);
+        close(fd[i][0]);
       }
-      else
+      if(execve(put_cmd_in_path(g_info->cmd->s_cmd[0], path), g_info->cmd->s_cmd, NULL) < 0)
       {
-          write(2, "ERROR IN FORK()\n", 17);
+        write(2, "ERROR IN excv1()\n", 17);
+        exit(1);
       }
+    }
+    else if (pid > 0)
+    {
+      if( i < g_info->n_cmd - 1)
+        close(fd[i][1]);
+      if( i > 0)
+        close(fd[i - 1][0]);
     }
     i++;
     g_info->cmd = g_info->cmd->next;
   }
   i = 0;
-  while(i < 2)
+  while(i < g_info->n_cmd)
   {
       wait(NULL); 
       i++;

@@ -6,7 +6,7 @@
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2023/01/05 15:25:39 by oabushar         ###   ########.fr        #
+#    Updated: 2023/01/13 16:34:35 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ FLAGS    	:= -Wall -Wextra -Werror -fcommon
 SRCS        :=  parser.c \
                 pipes.c\
                 env.c\
+                excute_redi.c\
 				parser_utils.c \
 				parser_utils2.c \
 				ft_split_q.c \

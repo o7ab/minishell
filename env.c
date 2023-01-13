@@ -11,6 +11,7 @@ char    *remove_equal(char *str)
         i++;
     }
     i++;
+
     return ((char *)&str[i]);
 }
 
@@ -28,5 +29,5 @@ char *get_path(void)
         }
         i++;
     }
-return (NULL);
+    return (NULL);
 }

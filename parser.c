@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 21:11:11 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:33:59 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,14 @@ void	init_info(char **env)
 	g_info->open_q = 0;
 }
 
-int	main(int ac, char **av, char **env)
+void	excute()
+{
+	get_path();
+	// one_pipe();
+	redir();	
+}
+
+int main(int ac, char **av, char **env)
 {
 	// t_cmd	*input;
 
