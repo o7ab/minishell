@@ -108,8 +108,6 @@ void	excute()
 
 int main(int ac, char **av, char **env)
 {
-	// t_cmd	*input;
-
 	(void)ac;
 	(void)av;
 	g_info = ft_calloc(1, sizeof(t_info));
@@ -118,10 +116,15 @@ int main(int ac, char **av, char **env)
 	init_info(env);
 	printf("%s", PURPLE);
 	g_info->line = readline("minishell> \033[0m");
-	if (g_info->line == NULL)
+	if (g_info->line == NULL || g_info->line[0] == 0)
+	{
+		free_double(g_info->env);
+		free_double(g_info->split);
+		free (g_info);
 		return (0);
-	if (g_info->line[0] == 0)
-		return (0);
+	}
+	// if (g_info->line[0] == 0)
+	// 	return (0);
 	add_history(g_info->line);
 	parse_line();
 		// excute();
