@@ -6,11 +6,11 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/13 16:34:54 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/25 08:39:00 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int	incrementer(char *s, int i)
 {
@@ -92,6 +92,8 @@ void	free_shell(void)
 		free_double(g_info->env);
 	if (g_info->split)
 		free_double(g_info->split);
+	if (!g_info->line)
+		return ;
 	while (g_info->cmd)
 	{	
 		if (g_info->cmd->s_cmd)
@@ -104,5 +106,4 @@ void	free_shell(void)
 		free (g_info->cmd);
 		g_info->cmd = ptr;
 	}
-	free (g_info);
 }

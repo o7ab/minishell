@@ -6,11 +6,11 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 04:46:39 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/04 21:35:25 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:33:42 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int	wordscount_og(char *s, char c)
 {

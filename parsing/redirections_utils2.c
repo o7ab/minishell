@@ -6,11 +6,11 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:44:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 19:54:25 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:33:42 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int	check_alloc_redir(int n_op)
 {

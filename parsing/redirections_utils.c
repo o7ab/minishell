@@ -6,11 +6,11 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:49:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 19:47:07 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:52:35 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	skip_oop(int *i)
 {
@@ -34,7 +34,7 @@ int	error_for_size_op(int i)
 	if (g_info->cmd->full_cmd[i] == '<' || g_info->cmd->full_cmd[i] == '>'
 		|| !g_info->cmd->full_cmd[i])
 	{
-		printf("bash: unexpecteddddd token `%c'\n", g_info->cmd->full_cmd[i]);
+		printf("bash: unexpected token `%c'\n", g_info->cmd->full_cmd[i]);
 		rl_on_new_line();
 		return (0);
 	}

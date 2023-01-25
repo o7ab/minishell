@@ -6,11 +6,11 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 21:24:36 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 20:26:57 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:11:34 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	copy_op(int i, int x)
 {
@@ -78,7 +78,7 @@ int	check_copy_redir(int n_op)
 		g_info->cmd->full_op = NULL;
 		g_info->cmd->files = NULL;
 		g_info->cmd->redir = NULL;
-		return (0);
+		return (1);
 	}
 	i = 0;
 	while (x < n_op)
@@ -120,7 +120,7 @@ int	get_redir(void)
 		g_info->cmd->full_op = NULL;
 		g_info->cmd->files = NULL;
 		g_info->cmd->redir = NULL;
-		return (0);
+		return (1);
 	}
 	if (!check_copy_redir(n_op))
 		return (0);

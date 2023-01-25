@@ -6,11 +6,11 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 21:32:50 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/06 18:56:17 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:33:42 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int	check_if_var(char *var, int i)
 {
@@ -89,10 +89,12 @@ char	*check_env(char *str)
 	int		i;
 	char	*tmp;
 	char	*tmp2;
+	char	*var;
 
 	i = 0;
 	tmp = NULL;
 	tmp2 = NULL;
+	var = NULL;
 	if (!str)
 		return (NULL);
 	while (str[i])
@@ -102,7 +104,9 @@ char	*check_env(char *str)
 			tmp = ft_substr(str, 0, i);
 			tmp2 = ft_substr(str, i + 1, ft_strlen(str) - i);
 			free(str);
-			str = ft_strjoin(tmp, get_env(tmp2));
+			var = get_env(tmp2);
+			str = ft_strjoin(tmp, var);
+			free (var);
 		}
 		i = inc_env(str, i);
 	}

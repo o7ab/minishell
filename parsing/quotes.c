@@ -6,11 +6,11 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:05:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/05 15:06:59 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:33:42 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 char	*get_quotes(char *str, int m)
 {
@@ -36,6 +36,7 @@ char	*get_quotes(char *str, int m)
 			ret[j++] = str[i];
 		i++;
 	}
+	free (str);
 	ret[j] = '\0';
 	return (ret);
 }
@@ -72,6 +73,11 @@ char	*check_quotes(char *str)
 
 	i = 0;
 	flag = 0;
+	if (g_info->open_q)
+	{
+		free (str);
+		return (NULL);
+	}
 	while (str[i] != 0)
 	{
 		if (str[i] == 34 || str[i] == 39)
