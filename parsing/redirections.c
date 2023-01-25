@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 21:24:36 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/11 17:11:34 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:33:41 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ int	check_copy_redir(int n_op)
 	int	i;
 
 	x = 0;
-	if (!check_redir(n_op) || n_op == 0)
+	if (!check_redir(n_op))
 	{
 		g_info->cmd->full_op = NULL;
 		g_info->cmd->files = NULL;
 		g_info->cmd->redir = NULL;
-		return (1);
+		return (0);
 	}
 	i = 0;
 	while (x < n_op)

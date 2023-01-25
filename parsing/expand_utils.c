@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:24:17 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/10 20:32:54 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:55:55 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ char	*var_error_help(char *str, int i)
 		free (str);
 		return (tmp);
 	}
-	if (i == 2)
-		free (str);
 	return (ft_strdup(""));
 }
 
@@ -50,8 +48,6 @@ char	*var_error(char *str)
 	if (ft_isdigit(str[i]) == 1
 		|| (!ft_isalnum(str[i]) && str[i] != '_' && str[i]))
 		return (var_error_help(str, 1));
-	if (str[i] == '_')
-		return (var_error_help(str, 2));
 	while (str[i] != '\0' && ft_isalnum(str[i]) == 1 && str[i] != '_')
 		i++;
 	if (str[i] != 0 && i == 0 && (str[i] == 34 || str[i] == 39))

@@ -5,11 +5,10 @@
 #                                                     +:+ +:+         +:+      #
 #    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: Invalid Date        by              +#+  #+#    #+#              #
-#    Updated: 2023/01/25 08:37:29 by oabushar         ###   ########.fr        #
+#    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
+#    Updated: 2023/01/25 08:42:23 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 
 NAME        := minishell
@@ -29,9 +28,20 @@ SRCS        :=  ./parsing/parser.c \
 				./parsing/expand_utils.c \
 				./parsing/quotes.c \
 				./execution/pipes.c\
-                ./execution/env.c\
+                ./get_next_line/get_next_line.c\
+                ./get_next_line/get_next_line_uti.c\
+                ./built-in/ft_echo.c\
+                ./built-in/ft_pwd.c\
+                ./built-in/ft_env.c\
+                ./built-in/ft_cd.c\
+                ./built-in/ft_unset.c\
+                ./built-in/ft_export.c\
                 ./execution/excute_redi.c\
+                ./execution/export_utilties.c\
+                ./execution/export_utilties2.c\
 				./execution/ft_split_char.c \
+				./execution/get_env.c \
+				./execution/is_built.c \
 					./includes/libft/ft_atoi.c \
                     ./includes/libft/ft_bzero.c \
                     ./includes/libft/ft_calloc.c \

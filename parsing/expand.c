@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 21:32:50 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/10 20:33:42 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:54:37 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_if_var(char *var, int i)
 {
 	if (!var)
 		return (0);
-	if (ft_isdigit(var[i]) == 1 || var[i] == '_')
+	if (ft_isdigit(var[i]) == 1)
 		return (0);
 	while (var[i] != '\0')
 	{

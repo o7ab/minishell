@@ -15,18 +15,14 @@ char    *remove_equal(char *str)
     return ((char *)&str[i]);
 }
 
-char *get_path(void)
+char *ft_env(void)
 {
     int i;
 
     i = 0;
     while (g_info->env[i])
     {
-        if ((ft_strncmp(g_info->env[i], "PATH=",5)) == 0)
-        {
-            return (remove_equal(g_info->env[i]));
-            break;
-        }
+        printf("%d %s\n",i,g_info->env[i]);
         i++;
     }
     return (NULL);

@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:36:18 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/25 08:39:00 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/25 08:52:56 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void	free_shell(void)
 {
 	t_cmd	*ptr;
 
-	if (g_info->env)
-		free_double(g_info->env);
+	// if (g_info->env)
+	// 	free_double(g_info->env);
 	if (g_info->split)
 		free_double(g_info->split);
 	if (!g_info->line)

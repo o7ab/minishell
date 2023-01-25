@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/13 16:42:14 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/25 09:09:51 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	parse_cmds(void)
 
 	i = 0;
 	tmp = g_info->cmd;
+	g_info->first = g_info->cmd;
 	while (i < g_info->n_cmd && g_info->split[i] && g_info->cmd)
 	{
 		init_input();
@@ -29,8 +30,8 @@ void	parse_cmds(void)
 	g_info->cmd = tmp;
 	i = 0;
 	while (g_info->cmd && g_info->cmd->s_cmd)
-	{
-		while (g_info->cmd && g_info->cmd->s_cmd[i])
+	{ 
+		while (g_info->cmd && g_info->cmd->s_cmd[i]) // in this line
 		{
 			printf("the s_cmd is (%s)\n", g_info->cmd->s_cmd[i]);
 			i++;
@@ -92,41 +93,50 @@ void	parse_line(void)
 
 void	init_info(char **env)
 {
-	g_info->env = alloc_env(env);
+	(void)env;
+	// g_info->env = alloc_env(env);
 	g_info->line = NULL;
 	g_info->split = NULL;
 	g_info->n_cmd = 0;
 	g_info->open_q = 0;
+
+
 }
 
 void	excute()
 {
-	get_path();
-	// one_pipe();
-	redir();	
+	one_pipe();
+	// ft_is_built(g_info->cmd->s_cmd[0]);
+
 }
 
 int main(int ac, char **av, char **env)
 {
-	// t_cmd	*input;
-
 	(void)ac;
 	(void)av;
 	g_info = ft_calloc(1, sizeof(t_info));
+	g_info->env = alloc_env(env);
 	while (1)
 	{
 		init_info(env);
 		printf("%s", PURPLE);
 		g_info->line = readline("minishell> \033[0m");
 		if (g_info->line == NULL)
+		{
+			exit(1);
+		}
+		if (g_info->line == NULL)
 			return (0);
 		if (g_info->line[0] == 0)
 			return (0);
 		add_history(g_info->line);
 		parse_line();
-		// excute();
+		excute();
 		free_shell();
 	}
+	if (g_info->env)
+		free_double(g_info->env);
 	free (g_info);
+
 	return (0);
 }
