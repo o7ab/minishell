@@ -19,16 +19,39 @@ char	*ft_strchr(const char *s, int c)
 
 	j = (char) c;
 	i = 0;
-	if (c == 0)
-		return ((char *)s + ft_strlen((char *)s));
+	if (!s)
+		return (NULL);
 	while (s[i])
 	{
-		if (s[i] == j)
+		if (s != NULL && s[i] == j)
+		{
 			return ((char *)s + i);
+		}
 		i++;
 	}
 	return (NULL);
 }
+
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	int		i;
+// 	char	j;
+
+// 	j = (char) c;
+// 	i = 0;
+// 	if (c == 0)
+// 		return ((char *)s + ft_strlen((char *)s));
+// 	if (s)
+// 	{
+// 		while (s[i])
+// 		{
+// 			if (s[i] == j)
+// 				return ((char *)s + i);
+// 			i++;
+// 		}
+// 	}
+// 	return (NULL);
+// }
 
 // int main()
 // {

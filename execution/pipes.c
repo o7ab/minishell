@@ -41,11 +41,18 @@ char  *put_cmd_in_path(char *cmd, char *path)
   }
   return (NULL);
 }
-
-void    one_pipe()
+int  check_builtin()
+{
+  if (g_info->n_cmd == 1)
+  {
+    ft_is_built(g_info->cmd->s_cmd[0]);
+    return (0);
+  }
+  return(1);
+}
+int    one_pipe()
 {
   int i;
-  char *path;
   int pid;
   int **fd;
   int j;
@@ -53,7 +60,8 @@ void    one_pipe()
   i = 0;
   j = 0;
   pid = 0;
-  fd = malloc((g_info->n_cmd - 1) * sizeof(int *));
+  if(g_info->n_cmd > 1)
+    fd = malloc((g_info->n_cmd - 1) * sizeof(int *));
   while (j < g_info->n_cmd - 1)
   {
     fd[j] = malloc(2 * sizeof(int));
@@ -70,35 +78,36 @@ void    one_pipe()
     i++;
   }
   i = 0;
-  path = get_path();
+  if (check_builtin() == 0)
+    return (0);
   while (i < g_info->n_cmd)
   {
     pid = fork();
     if (pid == 0)
     {
-      if (i != 0)
+      if(g_info->n_cmd > 1)
       {
-        dup2(fd[i-1][0],STDIN_FILENO);
-        close(fd[i-1][0]);
+        if (i != 0)
+        {
+          dup2(fd[i-1][0],STDIN_FILENO);
+          close(fd[i-1][0]);
+        }
+        if (i + 1 < g_info->n_cmd)
+        {
+          dup2(fd[i][1],STDOUT_FILENO);
+          close(fd[i][1]);
+          close(fd[i][0]);
+        }
       }
-      if (i + 1 < g_info->n_cmd)
-      {
-        dup2(fd[i][1],STDOUT_FILENO);
-        close(fd[i][1]);
-        close(fd[i][0]);
-      }
-      if(execve(put_cmd_in_path(g_info->cmd->s_cmd[0], path), g_info->cmd->s_cmd, NULL) < 0)
-      {
-        write(2, "ERROR IN excv1()\n", 17);
-        exit(1);
-      }
+      redir();
+      ft_is_built(g_info->cmd->s_cmd[0]); 
     }
     else if (pid > 0)
     {
-      if( i < g_info->n_cmd - 1)
-        close(fd[i][1]);
-      if( i > 0)
-        close(fd[i - 1][0]);
+        if( i < g_info->n_cmd - 1)
+          close(fd[i][1]);
+        if( i > 0)
+          close(fd[i - 1][0]);
     }
     i++;
     g_info->cmd = g_info->cmd->next;
@@ -109,4 +118,5 @@ void    one_pipe()
       wait(NULL); 
       i++;
   }
+  return(0);
 }

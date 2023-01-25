@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/09 15:55:18 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/25 07:45:27 by aghazi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
+# include <errno.h>
+# include <fcntl.h>
+# include <limits.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 
 # define RESET "\033[0m"
 # define PURPLE "\e[1;95m"
@@ -45,6 +50,7 @@ typedef struct s_info
 	char	**split;
 	int		n_cmd;
 	t_cmd	*cmd;
+	t_cmd	*first;
 }	t_info;
 
 t_info	*g_info;
@@ -74,11 +80,26 @@ void	full_copy(int index, int i);
 void	copy_short_cmd(int m, int n_op);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
-void	one_pipe(void);
-char	*get_path(void);
+int    one_pipe();
+char *ft_env(void);
 char	*check_env(char *str);
 char	*check_quotes(char *str);
+char  *put_cmd_in_path(char *cmd, char *path);
 void    redir(void);
 void	free_shell(void);
-
+void    ft_echo();
+int 	ft_strcmp(char *s1, char *s2);
+void    ft_is_built(char *command);
+void    ft_cd();
+void    ft_pwd();
+void    ft_export();
+int     ft_is_inside(char *key);
+void    ft_change_value(int i, int m);
+void    add_env(char *select, char *value, int i, int j);
+char    **ft_create_var(int len, char *key, int m);
+void    change_env(char *select, char *value, int j);
+char 	*ft_getenv(char *s);
+void	free_env(char **env);
+char    *ft_var(int i, int j);
+void    ft_unset();
 #endif
