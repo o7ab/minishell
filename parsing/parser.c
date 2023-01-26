@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/25 09:09:51 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/26 06:50:21 by aghazi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,13 @@ void	init_info(char **env)
 
 void	excute()
 {
+	g_info->fd_out_save = dup(STDOUT_FILENO);
+	g_info->fd_in_save = dup(STDIN_FILENO);
 	one_pipe();
-	// ft_is_built(g_info->cmd->s_cmd[0]);
-
+	if (dup2(g_info->fd_out_save, STDOUT_FILENO) < 0)
+		ft_putstr_fd("Error",2);
+	if (dup2(g_info->fd_in_save, STDIN_FILENO) < 0)
+		ft_putstr_fd("Error",2);
 }
 
 int main(int ac, char **av, char **env)

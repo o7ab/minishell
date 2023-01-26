@@ -1,17 +1,19 @@
 #include "../includes/minishell.h"
 
-void    excute_built_in(char *command)
-{    
+int     check_built_in(char *command)
+{
     if (ft_strcmp(command, "echo") == 0)
-        ft_echo();
+        return (0);
     else if (ft_strcmp(command, "cd") == 0)
-        ft_cd();
+        return (0);
     else if (ft_strcmp(command, "env") == 0)
-        ft_env();
+        return (0);
     else if (ft_strcmp(command, "pwd") == 0)
-        ft_pwd();
+        return (0);
     else if (ft_strcmp(command, "export") == 0)
-        ft_export();
+        return (0);
     else if (ft_strcmp(command, "unset") == 0)
-        ft_unset();
+        return (0);
+    else
+        return (1);
 }

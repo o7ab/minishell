@@ -26,22 +26,19 @@ void    ft_echo()
     int option;
 
     option = 0;
-    while (g_info->cmd)
+    if (g_info->cmd)
     {
         i = 1;
+        if (ft_is_flg(g_info->cmd->s_cmd[i]) == 0)
+            option = 1;
         while (g_info->cmd->s_cmd[i])
         {
-            if (ft_is_flg(g_info->cmd->s_cmd[i]))
-            {
-                printf("%s",g_info->cmd->s_cmd[i]);
-                printf(" ");
-            }
-            else 
-                option = 1;
+            ft_putstr_fd(g_info->cmd->s_cmd[i], 1);
+            ft_putstr_fd(" ",1);
             i++;
         }
         if (option == 0)
-            printf("\n");
-        g_info->cmd = g_info->cmd->next;
+            ft_putstr_fd("\n",1);
     }
+    g_info->cmd = g_info->cmd->next;
 }

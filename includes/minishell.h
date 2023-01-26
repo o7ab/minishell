@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/25 08:42:03 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/26 06:29:16 by aghazi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_info
 	char	*line;
 	char	**env;
 	char	**split;
+	int		fd_out_save;
+	int		fd_in_save;
 	int		n_cmd;
 	t_cmd	*cmd;
 	t_cmd	*first;
@@ -89,7 +91,8 @@ void    redir(void);
 void	free_shell(void);
 void    ft_echo();
 int 	ft_strcmp(char *s1, char *s2);
-void    ft_is_built(char *command);
+void    excute_built_in(char *command);
+int     check_built_in(char *command);
 void    ft_cd();
 void    ft_pwd();
 void    ft_export();

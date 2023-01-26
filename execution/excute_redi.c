@@ -75,7 +75,7 @@ void    redir()
                     }
                     if(g_info->cmd->redir[i][0] == '>')
                     {
-                        if ((fd = open(g_info->cmd->files[i], O_RDWR | O_CREAT | O_APPEND, S_IRWXU)) < 0)
+                        if ((fd = open(g_info->cmd->files[i], O_CREAT | O_APPEND | O_WRONLY)) < 0)
                             printf("Error\n");
                         if (dup2(fd, STDOUT_FILENO) < 0)
                         {
@@ -85,37 +85,5 @@ void    redir()
                     }
                     i++;
                 }
-            // }
-        //     g_info->cmd = g_info->cmd->next;
-        // }
-        // g_info->cmd = g_info->first;
-    }
-    // if (g_info->cmd->redir[1][0] == '>')
-    // {
-    //     printf("ggg");
-    //     if ((fd1 = open(g_info->cmd->files[1], O_RDWR | O_CREAT , 0644)) < 0)
-    //     {
-    //       printf("Error\n");
-    //     // printf("%s\n",strerror(errno));
-    //     }
-    //     if (dup2(fd1, STDOUT_FILENO) < 0)
-    //     {
-    //         // printf("%s\n",strerror(errno));
-    //     }
-    //     close(fd1);
-    // }
-
-    // int i;
-
-    // i = 0;
-    // while (g_info->cmd)
-    // {
-    //     i = 0;
-    //     while (g_info->cmd->files[i])
-    //     {
-    //         printf("this is redir %s\n",g_info->cmd->files[i]);
-    //         i++;
-    //     }
-    //     g_info->cmd = g_info->cmd->next;
-    // }
+            }
 }

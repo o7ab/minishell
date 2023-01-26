@@ -24,6 +24,7 @@ char    **del_key(int index)
         i++;
     }
     new[i] = NULL;
+    free_double(g_info->env);
     g_info->env = new;
     return(new);
 }

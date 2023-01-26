@@ -34,22 +34,25 @@ char  *put_cmd_in_path(char *cmd, char *path)
       m++;
     }
     cmd_with_cmd[l] = '\0';
-    if (access(cmd_with_cmd,X_OK) == 0)
+    if (access(cmd_with_cmd, X_OK) == 0)
       return (cmd_with_cmd);
     i++;
     free(cmd_with_cmd);
   }
   return (NULL);
 }
+
 int  check_builtin()
 {
-  if (g_info->n_cmd == 1)
+  if (g_info->n_cmd == 1 && !check_built_in(g_info->cmd->s_cmd[0]))
   {
-    ft_is_built(g_info->cmd->s_cmd[0]);
+    redir();
+    excute_built_in(g_info->cmd->s_cmd[0]);
     return (0);
   }
   return(1);
 }
+
 int    one_pipe()
 {
   int i;
@@ -60,6 +63,11 @@ int    one_pipe()
   i = 0;
   j = 0;
   pid = 0;
+  if (g_info->cmd->s_cmd[0] == NULL)
+  {
+    printf("erro");
+    return 0;
+  }
   if(g_info->n_cmd > 1)
     fd = malloc((g_info->n_cmd - 1) * sizeof(int *));
   while (j < g_info->n_cmd - 1)
@@ -100,7 +108,22 @@ int    one_pipe()
         }
       }
       redir();
-      ft_is_built(g_info->cmd->s_cmd[0]); 
+      if (check_built_in(g_info->cmd->s_cmd[0]) == 1)
+      {
+        char *path;
+
+        path = ft_getenv("PATH");
+        if (path != NULL)
+        {
+            if (execve(put_cmd_in_path(g_info->cmd->s_cmd[0], path), g_info->cmd->s_cmd, NULL) < 0)
+            {
+                printf("Bash : Command not found\n");
+                exit(1);
+            }
+        }
+      }
+      else
+        excute_built_in(g_info->cmd->s_cmd[0]);
     }
     else if (pid > 0)
     {

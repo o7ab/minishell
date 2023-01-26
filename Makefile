@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
+#    By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2023/01/25 08:42:23 by oabushar         ###   ########.fr        #
+#    Updated: 2023/01/26 06:29:46 by aghazi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS        :=  ./parsing/parser.c \
                 ./built-in/ft_unset.c\
                 ./built-in/ft_export.c\
                 ./execution/excute_redi.c\
+                ./execution/check_builu_in.c\
                 ./execution/export_utilties.c\
                 ./execution/export_utilties2.c\
 				./execution/ft_split_char.c \
