@@ -3,3 +3,4 @@
 *.dSYM
 minishell
 .DS_Store
+leak.sh

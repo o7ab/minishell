@@ -6,7 +6,7 @@
 /*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 01:29:51 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/10 20:33:42 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/27 20:20:52 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,24 @@ int	get_word(char *str, int i)
 	return (i);
 }
 
-void	free_env(char **env)
+void	init_info(char **env)
 {
-	int	i;
+	(void)env;
+	// g_info->env = alloc_env(env);
+	// g_info->pid = 1;
+	g_info->line = NULL;
+	g_info->split = NULL;
+	g_info->n_cmd = 0;
+	g_info->open_q = 0;
+}
 
-	i = 0;
-	while (env[i])
-	{
-		free(env[i]);
-		i++;
-	}
-	free(env);
+void	free_info()
+{
+	if (g_info->env)
+		free_double(g_info->env);
+	if (g_info->split)
+		free_double(g_info->split);
+	free (g_info);
 }
 
 char	**alloc_env(char **env)
@@ -61,7 +68,7 @@ char	**alloc_env(char **env)
 		new_env[j] = ft_strdup(env[j]);
 		if (!new_env[j])
 		{
-			free_env(new_env);
+			free_double(new_env);
 			return (NULL);
 		}
 		j++;

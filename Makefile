@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+         #
+#    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2023/01/26 06:29:46 by aghazi           ###   ########.fr        #
+#    Updated: 2023/01/27 22:03:13 by oabushar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ SRCS        :=  ./parsing/parser.c \
 				./parsing/expand_utils.c \
 				./parsing/quotes.c \
 				./execution/pipes.c\
-                ./get_next_line/get_next_line.c\
-                ./get_next_line/get_next_line_uti.c\
+                ./includes/get_next_line/get_next_line.c\
+                ./includes/get_next_line/get_next_line_uti.c\
                 ./built-in/ft_echo.c\
                 ./built-in/ft_pwd.c\
                 ./built-in/ft_env.c\

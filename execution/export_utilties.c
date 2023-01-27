@@ -40,6 +40,7 @@ char    **ft_create_var(int len, char *key, int m)
 
     j = 0;
     i = 0;
+	new_envi = NULL;
     index = ft_is_inside(key);
     if (index == 0)
     {

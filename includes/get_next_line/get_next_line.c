@@ -1,5 +1,5 @@
 #include "get_next_line.h"
-#include "../includes/libft/libft.h"
+#include "../libft/libft.h"
 
 char	*get_next_line(int fd)
 {

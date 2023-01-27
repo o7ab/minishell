@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/26 06:29:16 by aghazi           ###   ########.fr       */
+/*   Updated: 2023/01/27 22:02:28 by oabushar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "libft/libft.h"
-# include "../get_next_line/get_next_line.h"
+# include "get_next_line/get_next_line.h"
 
 # define RESET "\033[0m"
 # define PURPLE "\e[1;95m"
@@ -47,6 +47,7 @@ typedef struct s_info
 	int		open_q;
 	char	*line;
 	char	**env;
+	int		pid;
 	char	**split;
 	int		fd_out_save;
 	int		fd_in_save;
@@ -83,10 +84,10 @@ void	copy_short_cmd(int m, int n_op);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
 int    one_pipe();
-char *ft_env(void);
+char	*ft_env(void);
 char	*check_env(char *str);
 char	*check_quotes(char *str);
-char  *put_cmd_in_path(char *cmd, char *path);
+char 	*put_cmd_in_path(char *cmd, char *path);
 void    redir(void);
 void	free_shell(void);
 void    ft_echo();
@@ -102,7 +103,12 @@ void    add_env(char *select, char *value, int i, int j);
 char    **ft_create_var(int len, char *key, int m);
 void    change_env(char *select, char *value, int j);
 char 	*ft_getenv(char *s);
-void	free_env(char **env);
+void	init_info(char **env);
+void    free_info();
 char    *ft_var(int i, int j);
 void    ft_unset();
+void	sig_handler(int sig);
+
+
+
 #endif

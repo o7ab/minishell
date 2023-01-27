@@ -42,6 +42,12 @@ char  *put_cmd_in_path(char *cmd, char *path)
   return (NULL);
 }
 
+void	print_quit(int signal)
+{
+	(void)signal;
+	write(1, "Quit: 3\n", 9);
+}
+
 int  check_builtin()
 {
   if (g_info->n_cmd == 1 && !check_built_in(g_info->cmd->s_cmd[0]))
@@ -63,6 +69,8 @@ int    one_pipe()
   i = 0;
   j = 0;
   pid = 0;
+  if (!g_info->cmd->s_cmd)
+	return (0);
   if (g_info->cmd->s_cmd[0] == NULL)
   {
     printf("erro");
@@ -90,10 +98,14 @@ int    one_pipe()
     return (0);
   while (i < g_info->n_cmd)
   {
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
     pid = fork();
     if (pid == 0)
     {
-      if(g_info->n_cmd > 1)
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+    	if(g_info->n_cmd > 1)
       {
         if (i != 0)
         {
@@ -141,5 +153,7 @@ int    one_pipe()
       wait(NULL); 
       i++;
   }
-  return(0);
+	signal(SIGINT, &sig_handler);
+	signal(SIGQUIT, &sig_handler);
+	return(0);
 }
