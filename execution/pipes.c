@@ -77,7 +77,8 @@ int    one_pipe()
 
     i = 0;
     pid = 0;
-    ft_create_fd();
+    if (ft_create_fd())
+      return(1);
     if (check_builtin() == 0)
       return (0);
     while (i < g_info->n_cmd)

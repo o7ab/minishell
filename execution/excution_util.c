@@ -1,9 +1,9 @@
 #include "../includes/minishell.h"
 
-void    ft_error()
+int    ft_error()
 {
     ft_putstr_fd("Error\n",2);
-    exit(1);
+    return(1);
 }
 
 int    ft_create_fd()
