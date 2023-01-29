@@ -14,7 +14,10 @@ int    ft_create_fd()
     i = 0;
     j = 0;
     if (g_info->cmd->s_cmd == NULL || g_info->cmd->s_cmd[0] == NULL)
-        ft_error();
+    {
+        ft_putstr_fd("Error\n",2);
+        return(1);
+    }
     if(g_info->n_cmd > 1)
         g_info->fd = malloc((g_info->n_cmd - 1) * sizeof(int *));
     while (j < g_info->n_cmd - 1)
