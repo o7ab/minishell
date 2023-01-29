@@ -50,3 +50,21 @@ void    add_env(char *select, char *value, int i, int j)
     else
         ft_create_var(i, select, j);
 }
+
+
+void    alloc_export()
+{
+    int i;
+
+    i = 0;
+    while (g_info->env[i])
+        i++;
+    g_info->expor = malloc(sizeof(char *) * (i + 1));
+     i =0;
+    while (g_info->env[i])
+    {
+        g_info->expor[i] = ft_strdup(g_info->env[i]);
+        i++;
+    }
+    g_info->expor[i] = NULL;
+}

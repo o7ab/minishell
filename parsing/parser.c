@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:03:02 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/27 21:38:25 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/29 21:04:49 by aghazi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/minishell.h"
 
@@ -70,7 +71,19 @@ void parse_line(void)
 	parse_cmds();
 }
 
-void excute()
+// void	init_info(char **env)
+// {
+// 	(void)env;
+// 	g_info->line = NULL;
+// 	g_info->split = NULL;
+// 	g_info->n_cmd = 0;
+// 	g_info->open_q = 0;
+// 	g_info->return_code = 0;
+// 	g_info->flag_long = 0;
+// 	g_info->flag_expor = 0;
+// }
+
+void	excute()
 {
 	g_info->fd_out_save = dup(STDOUT_FILENO);
 	g_info->fd_in_save = dup(STDIN_FILENO);
@@ -103,6 +116,7 @@ int main(int ac, char **av, char **env)
 	g_info->env = alloc_env(env);
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
+	alloc_export();
 	while (1)
 	{
 		init_info(env);

@@ -35,10 +35,8 @@ char    **ft_create_var(int len, char *key, int m)
 {
     char **new_envi;
     int i;
-    int j;
     int index;
 
-    j = 0;
     i = 0;
 	new_envi = NULL;
     index = ft_is_inside(key);
@@ -52,16 +50,7 @@ char    **ft_create_var(int len, char *key, int m)
             new_envi[i] = g_info->env[i];
             i++;
         }
-        while (g_info->cmd->s_cmd[m][j])
-            j++;
-        new_envi[i] = malloc((j + 1) * sizeof(char));
-        j = 0;
-        while (g_info->cmd->s_cmd[m][j])
-        {
-            new_envi[i][j] = g_info->cmd->s_cmd[m][j];
-            j++;
-        }
-        new_envi[i][j] = '\0';
+        new_envi[i] = ft_strdup(g_info->cmd->s_cmd[m]);
         i++;
         new_envi[i] = NULL;
         g_info->env = new_envi;

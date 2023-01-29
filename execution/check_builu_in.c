@@ -14,6 +14,8 @@ int     check_built_in(char *command)
         return (0);
     else if (ft_strcmp(command, "unset") == 0)
         return (0);
+    else if (ft_strcmp(command, "exit") == 0)
+        return (0);
     else
         return (1);
 }

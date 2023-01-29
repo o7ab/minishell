@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 01:29:51 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/27 20:20:52 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/29 21:04:08 by aghazi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/minishell.h"
 
@@ -31,7 +32,7 @@ int	get_word(char *str, int i)
 }
 
 void	init_info(char **env)
-{
+	{
 	(void)env;
 	// g_info->env = alloc_env(env);
 	// g_info->pid = 1;
@@ -74,7 +75,7 @@ char	**alloc_env(char **env)
 		j++;
 	}
 	new_env[j] = NULL;
-	return (new_env);
+	return(new_env);
 }
 
 void	init_input(void)

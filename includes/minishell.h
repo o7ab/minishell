@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/27 22:02:28 by oabushar         ###   ########.fr       */
+/*   Updated: 2023/01/29 20:51:30 by aghazi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -48,10 +49,15 @@ typedef struct s_info
 	char	*line;
 	char	**env;
 	int		pid;
+	char	**expor;
 	char	**split;
 	int		fd_out_save;
 	int		fd_in_save;
 	int		n_cmd;
+	int		**fd;
+	int		flag_expor;
+	int		flag_long;
+	int		return_code;
 	t_cmd	*cmd;
 	t_cmd	*first;
 }	t_info;
@@ -106,9 +112,12 @@ char 	*ft_getenv(char *s);
 void	init_info(char **env);
 void    free_info();
 char    *ft_var(int i, int j);
+void    alloc_export();
 void    ft_unset();
 void	sig_handler(int sig);
-
-
-
+int    ft_create_fd();
+void    excute_command();
+char    *ft_put_path(int len_path, int len_cmd, char *sp, char *cmd);
+void    change_expo(char *select, int j);
+void    ft_exit();
 #endif

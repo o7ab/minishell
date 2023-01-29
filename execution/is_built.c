@@ -14,4 +14,6 @@ void    excute_built_in(char *command)
         ft_export();
     else if (ft_strcmp(command, "unset") == 0)
         ft_unset();
+    else if (ft_strcmp(command, "exit") == 0)
+        ft_exit();
 }

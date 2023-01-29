@@ -18,9 +18,9 @@ char    **del_key(int index)
     while (i < len)
     {
         if (i == index)
-            new[i] = g_info->env[i + 1];
+            new[i] = ft_strdup(g_info->env[i + 1]);
         else 
-            new[i] = g_info->env[i];
+            new[i] = ft_strdup(g_info->env[i]);
         i++;
     }
     new[i] = NULL;
@@ -34,7 +34,6 @@ void    ft_unset_env()
     int i;
     int j;
     int index;
-    char *key;
 
     i = 0;
     j = 1;
@@ -43,11 +42,10 @@ void    ft_unset_env()
     {
         while (g_info->cmd->s_cmd[j][i] != '=' && g_info->cmd->s_cmd[j][i])
             i++;
-        key = ft_var(i,j);
         i = 0;
         while (g_info->env[i])
         {
-            if ((ft_strncmp(g_info->env[i], key, ft_strlen(key))) == 0)
+            if ((ft_strncmp(g_info->env[i], ft_var(i,j), ft_strlen(ft_var(i,j)))) == 0)
             {
                 index = i;
                 break;
@@ -57,7 +55,6 @@ void    ft_unset_env()
         del_key(index);
         j++;
     }
-    
 }
 
 void    ft_unset()

@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oabushar <oabushar@student.42.fr>          +#+  +:+       +#+         #
+#    By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2023/01/27 22:03:13 by oabushar         ###   ########.fr        #
+#    Updated: 2023/01/29 20:59:48 by aghazi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 
 NAME        := minishell
@@ -31,6 +32,7 @@ SRCS        :=  ./parsing/parser.c \
                 ./includes/get_next_line/get_next_line.c\
                 ./includes/get_next_line/get_next_line_uti.c\
                 ./built-in/ft_echo.c\
+                ./built-in/exit.c\
                 ./built-in/ft_pwd.c\
                 ./built-in/ft_env.c\
                 ./built-in/ft_cd.c\
@@ -39,9 +41,11 @@ SRCS        :=  ./parsing/parser.c \
                 ./execution/excute_redi.c\
                 ./execution/check_builu_in.c\
                 ./execution/export_utilties.c\
+                ./execution/excution_util.c\
                 ./execution/export_utilties2.c\
 				./execution/ft_split_char.c \
 				./execution/get_env.c \
+				./execution/add_to_export.c \
 				./execution/is_built.c \
 					./includes/libft/ft_atoi.c \
                     ./includes/libft/ft_bzero.c \
