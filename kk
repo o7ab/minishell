@@ -1,3 +1,0 @@
-ncskd
-csdc
-kk

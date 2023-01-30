@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+         #
+#    By: omar <omar@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 06:39:27 by oabushar          #+#    #+#              #
-#    Updated: 2023/01/29 20:59:48 by aghazi           ###   ########.fr        #
+#    Updated: 2023/01/30 03:07:26 by omar             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,8 @@ SRCS        :=  ./parsing/parser.c \
                 ./execution/export_utilties2.c\
 				./execution/ft_split_char.c \
 				./execution/get_env.c \
+				./execution/signals.c \
+				./execution/redir_util.c \
 				./execution/add_to_export.c \
 				./execution/is_built.c \
 					./includes/libft/ft_atoi.c \

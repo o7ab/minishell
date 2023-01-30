@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: omar <omar@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:02:24 by oabushar          #+#    #+#             */
-/*   Updated: 2023/01/29 20:51:30 by aghazi           ###   ########.fr       */
+/*   Updated: 2023/01/30 03:20:02 by omar             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# pragma once
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -89,20 +88,20 @@ void	full_copy(int index, int i);
 void	copy_short_cmd(int m, int n_op);
 int		get_word(char *str, int i);
 char	**alloc_env(char **env);
-int    one_pipe();
+int    one_pipe(void);
 char	*ft_env(void);
 char	*check_env(char *str);
 char	*check_quotes(char *str);
 char 	*put_cmd_in_path(char *cmd, char *path);
 void    redir(void);
 void	free_shell(void);
-void    ft_echo();
+void    ft_echo(void);
 int 	ft_strcmp(char *s1, char *s2);
 void    excute_built_in(char *command);
 int     check_built_in(char *command);
-void    ft_cd();
-void    ft_pwd();
-void    ft_export();
+void    ft_cd(void);
+void    ft_pwd(void);
+void    ft_export(void);
 int     ft_is_inside(char *key);
 void    ft_change_value(int i, int m);
 void    add_env(char *select, char *value, int i, int j);
@@ -112,12 +111,16 @@ char 	*ft_getenv(char *s);
 void	init_info(char **env);
 void    free_info();
 char    *ft_var(int i, int j);
-void    alloc_export();
-void    ft_unset();
+void	sign(void);
+void	ft_start_sign(void);
+void    alloc_export(void);
+void    ft_unset(void);
 void	sig_handler(int sig);
-int    ft_create_fd();
-void    excute_command();
+int    ft_create_fd(void);
+void    excute_command(void);
+void	input_redi(int i);
+int	ff(int i);
 char    *ft_put_path(int len_path, int len_cmd, char *sp, char *cmd);
 void    change_expo(char *select, int j);
-void    ft_exit();
+void    ft_exit(void);
 #endif
